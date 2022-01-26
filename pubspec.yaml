@@ -1,0 +1,30 @@
+name: roll_the_ball
+description: A new Flutter project.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  bloc: ^8.0.2
+  equatable: ^2.0.3
+  flutter_bloc: ^8.0.0
+  url_launcher: ^6.0.17
+  velocity_x: ^3.3.0
+  audioplayers: ^0.20.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/audio/
+    - assets/images/
+    - assets/images/tiles/
+
