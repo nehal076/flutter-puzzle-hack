@@ -5,9 +5,10 @@ abstract class PuzzleEvent {
 }
 
 class Swipe extends PuzzleEvent {
+  final BuildContext context;
   final Direction direction;
   final int row;
   final int column;
 
-  Swipe(this.direction, this.row, this.column);
+  Swipe(this.context, this.direction, this.row, this.column);
 }

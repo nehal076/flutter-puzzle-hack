@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:roll_the_ball/screens/puzzle/puzzle_widgets/ball_view.dart';
 import 'package:roll_the_ball/screens/puzzle/puzzle_widgets/board.dart';
+import 'package:roll_the_ball/screens/puzzle/puzzle_widgets/puzzle_view.dart';
+
+import 'puzzle_widgets/cover_screen.dart';
 
 class PuzzleScreen extends StatefulWidget {
   const PuzzleScreen({Key? key}) : super(key: key);
@@ -21,21 +25,14 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              // margin: const EdgeInsets.all(16),
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/board.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: const Board(),
-            ),
-          ],
+        child: Board(
+          child: Stack(
+            children: const [
+              PuzzleView(),
+              BallView(),
+              CoverScreen(),
+            ],
+          ),
         ),
       ),
     );

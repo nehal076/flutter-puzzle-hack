@@ -1,5 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:bloc/bloc.dart';
+import 'package:collection/collection.dart';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
@@ -14,6 +18,13 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     [0, 5, 14, 19],
     [0, 17, 0, 2],
     [0, 0, 18, 0],
+  ];
+
+  List<List<int>> level1Win = [
+    [0, 0, 0, 0],
+    [0, 5, 14, 19],
+    [0, 17, 18, 2],
+    [0, 0, 0, 0],
   ];
 
   final sound = AudioCache();
@@ -39,8 +50,13 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     }
 
     level1[i][j] = 0;
+
     sound.play('audio/tile.mp3', volume: 0.5);
     emit(TileMoved());
+
+    if (const DeepCollectionEquality().equals(level1, level1Win)) {
+      BlocProvider.of<BallBloc>(event.context).add(RollBall());
+    }
   }
 }
 
