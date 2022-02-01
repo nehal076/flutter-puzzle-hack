@@ -25,7 +25,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: const EdgeInsets.all(16),
+              // margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
                 image: DecorationImage(

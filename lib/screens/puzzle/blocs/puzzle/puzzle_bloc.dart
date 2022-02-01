@@ -32,7 +32,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
         break;
       case Direction.left:
         level1[i][j - 1] = level1[i][j];
-        emit(TileMoved());
         break;
       case Direction.right:
         level1[i][j + 1] = level1[i][j];
