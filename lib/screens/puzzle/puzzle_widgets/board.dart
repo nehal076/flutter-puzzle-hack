@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/layout/layout.dart';
+import 'package:flutter_svg/svg.dart';
 
 class Board extends StatelessWidget {
   final Widget child;
@@ -8,28 +8,18 @@ class Board extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // final size = MediaQuery.of(context).size;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ResponsiveLayoutBuilder(
-          small: (_, child) => child,
-          medium: (_, child) => child,
-          large: (_, child) => child,
-          child: (currentSize) {
-            return Container(
-              margin: const EdgeInsets.all(16),
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/board.png'),
-                  fit: BoxFit.contain,
-                ),
-              ),
-              child: child,
-            );
-          },
-        ),
-      ],
+    return SizedBox(
+      height: 300, // TODO: make it dynamic
+      width: 300,
+      child: Stack(
+        children: [
+          SvgPicture.asset(
+            'assets/images/board.svg',
+            fit: BoxFit.cover,
+          ),
+          child,
+        ],
+      ),
     );
   }
 }

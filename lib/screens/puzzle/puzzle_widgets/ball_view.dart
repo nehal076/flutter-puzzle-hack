@@ -17,7 +17,6 @@ class _BallViewState extends State<BallView> {
     // final size = MediaQuery.of(context).size;
     return BlocBuilder<BallBloc, BallState>(
       builder: (context, state) {
-        print(state);
         final ballBloc = context.read<BallBloc>();
         // final size = MediaQuery.of(context).size;
         // blockSize = size.width / numBlocks;

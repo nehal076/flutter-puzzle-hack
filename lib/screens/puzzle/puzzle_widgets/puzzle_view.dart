@@ -39,10 +39,8 @@ class _PuzzleViewState extends State<PuzzleView> {
                           puzzleBloc.add(Swipe(context, Direction.left, i, j));
                         },
                         child: SizedBox(
-                          width:
-                              98, // will be dynamic (Min of (page height, page width) * 0.90 / Number of blocks in a row in a stage)
-                          height:
-                              98, // will be dynamic (Min of (page height, page width)  * 0.90 / Number of blocks in a column in a stage)
+                          width: 50, // TODO: make it dynamic
+                          height: 50,
                           child: SvgPicture.asset(
                             'assets/images/tiles/tile${level[i][j]}.svg',
                           ),
