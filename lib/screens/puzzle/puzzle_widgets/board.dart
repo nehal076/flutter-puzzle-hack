@@ -7,18 +7,29 @@ class Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final size = MediaQuery.of(context).size;
-    return SizedBox(
-      height: 300, // TODO: make it dynamic
-      width: 300,
-      child: Stack(
-        children: [
-          SvgPicture.asset(
-            'assets/images/board.svg',
-            fit: BoxFit.cover,
-          ),
-          child,
-        ],
+    final double _width = MediaQuery.of(context).size.width * 0.90;
+    final double _height = MediaQuery.of(context).size.height * 0.90;
+
+    final double _boardSize = _width > _height ? _height : _width;
+
+    return Center(
+      child: SizedBox(
+        height: _boardSize,
+        width: _boardSize,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.90,
+              width: MediaQuery.of(context).size.width * 0.90,
+              child: SvgPicture.asset(
+                'assets/images/board.svg',
+                fit: BoxFit.cover,
+              ),
+            ),
+            child,
+          ],
+        ),
       ),
     );
   }

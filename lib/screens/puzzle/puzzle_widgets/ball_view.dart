@@ -14,22 +14,27 @@ class BallView extends StatefulWidget {
 class _BallViewState extends State<BallView> {
   @override
   Widget build(BuildContext context) {
+    const int numBlocks = 4; //TODO: Fetch later from stage data
+    const int ballSize = 25; //TODO make dynamic later
+    final double _width = MediaQuery.of(context).size.width * 0.90;
+    final double _height = MediaQuery.of(context).size.height * 0.90;
+    List<int> stageStartPoint = [1, 1];
+    final double _boardSize = _width > _height ? _height : _width;
+
     // final size = MediaQuery.of(context).size;
     return BlocBuilder<BallBloc, BallState>(
       builder: (context, state) {
+        double _blockSize = _boardSize / numBlocks;
         final ballBloc = context.read<BallBloc>();
-        // final size = MediaQuery.of(context).size;
-        // blockSize = size.width / numBlocks;
+        ballBloc.blockSize = _blockSize;
 
-        // initialX = size.width / 2;
-        // initialY = size.height / 2;
+        ballBloc.initialX =
+            _blockSize * stageStartPoint[0] + _blockSize / 2 - ballSize / 2;
+        ballBloc.initialY = _blockSize * stageStartPoint[1];
 
-        ballBloc.blockSize = 98;
-        ballBloc.initialX = 135;
-        ballBloc.initialY = 85;
-
-        double ballX = 135;
-        double ballY = 85;
+        double ballX =
+            _blockSize * stageStartPoint[0] + _blockSize / 2 - ballSize / 2;
+        double ballY = _blockSize * stageStartPoint[1];
 
         if (state is BallRolling) {
           ballX = state.ballX;
