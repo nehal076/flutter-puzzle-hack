@@ -14,6 +14,7 @@ class BallView extends StatefulWidget {
 class _BallViewState extends State<BallView> {
   @override
   Widget build(BuildContext context) {
+    // final size = MediaQuery.of(context).size;
     return BlocBuilder<BallBloc, BallState>(
       builder: (context, state) {
         print(state);

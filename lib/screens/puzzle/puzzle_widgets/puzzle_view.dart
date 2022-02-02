@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:roll_the_ball/widgets/swipe_detector.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PuzzleView extends StatefulWidget {
   const PuzzleView({Key? key}) : super(key: key);
@@ -37,8 +38,14 @@ class _PuzzleViewState extends State<PuzzleView> {
                         onSwipeLeft: () {
                           puzzleBloc.add(Swipe(context, Direction.left, i, j));
                         },
-                        child: Image.asset(
-                          'assets/images/tiles/tile${level[i][j]}.png',
+                        child: SizedBox(
+                          width:
+                              98, // will be dynamic (Min of (page height, page width) * 0.90 / Number of blocks in a row in a stage)
+                          height:
+                              98, // will be dynamic (Min of (page height, page width)  * 0.90 / Number of blocks in a column in a stage)
+                          child: SvgPicture.asset(
+                            'assets/images/tiles/tile${level[i][j]}.svg',
+                          ),
                         ),
                       )
                   ],

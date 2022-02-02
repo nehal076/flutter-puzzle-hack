@@ -10,12 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   bloc: ^8.0.2
-  equatable: ^2.0.3
   flutter_bloc: ^8.0.0
   url_launcher: ^6.0.17
-  velocity_x: ^3.3.0
   audioplayers: ^0.20.1
   gap: ^2.0.0
+  flutter_svg: ^1.0.3
 
 dev_dependencies:
   flutter_test:
@@ -28,4 +27,3 @@ flutter:
     - assets/audio/
     - assets/images/
     - assets/images/tiles/
-
