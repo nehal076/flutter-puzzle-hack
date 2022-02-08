@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/puzzle_screen.dart';
+import 'package:roll_the_ball/screens/start/start_screen.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -18,10 +19,11 @@ class AppRouter {
                 create: (context) => BallBloc(),
               ),
             ],
-            child: const PuzzleScreen(),
+            child: const StartScreen(),
           ),
         );
-      default:
+      case 'puzzle_screen':
+        int level = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -32,7 +34,23 @@ class AppRouter {
                 create: (context) => BallBloc(),
               ),
             ],
-            child: const PuzzleScreen(),
+            child: PuzzleScreen(level: level),
+          ),
+        );
+
+      default:
+        int level = settings.arguments as int;
+        return MaterialPageRoute(
+          builder: (context) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => PuzzleBloc(),
+              ),
+              BlocProvider(
+                create: (context) => BallBloc(),
+              ),
+            ],
+            child: PuzzleScreen(level: level),
           ),
         );
     }

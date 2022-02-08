@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:roll_the_ball/utils/router.dart';
 
-void main() {
+import 'utils/shared_prefs.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPrefUtils.init();
   runApp(const MyApp());
 }
 

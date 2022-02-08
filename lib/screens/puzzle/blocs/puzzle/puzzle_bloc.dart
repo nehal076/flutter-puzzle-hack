@@ -13,19 +13,9 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     on<Swipe>(_swipe);
   }
 
-  List<List<int>> level1 = [
-    [0, 0, 0, 0],
-    [0, 5, 14, 19],
-    [0, 17, 0, 2],
-    [0, 0, 18, 0],
-  ];
+  List<List<int>> playerLevel = [];
 
-  List<List<int>> level1Win = [
-    [0, 0, 0, 0],
-    [0, 5, 14, 19],
-    [0, 17, 18, 2],
-    [0, 0, 0, 0],
-  ];
+  List<List<int>> playerLevelWin = [];
 
   final sound = AudioCache();
 
@@ -36,25 +26,25 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     switch (direction) {
       case Direction.up:
-        level1[i - 1][j] = level1[i][j];
+        playerLevel[i - 1][j] = playerLevel[i][j];
         break;
       case Direction.down:
-        level1[i + 1][j] = level1[i][j];
+        playerLevel[i + 1][j] = playerLevel[i][j];
         break;
       case Direction.left:
-        level1[i][j - 1] = level1[i][j];
+        playerLevel[i][j - 1] = playerLevel[i][j];
         break;
       case Direction.right:
-        level1[i][j + 1] = level1[i][j];
+        playerLevel[i][j + 1] = playerLevel[i][j];
         break;
     }
 
-    level1[i][j] = 0;
+    playerLevel[i][j] = 0;
 
     sound.play('audio/tile.mp3', volume: 0.5);
     emit(TileMoved());
 
-    if (const DeepCollectionEquality().equals(level1, level1Win)) {
+    if (const DeepCollectionEquality().equals(playerLevel, playerLevelWin)) {
       BlocProvider.of<BallBloc>(event.context).add(RollBall());
     }
   }

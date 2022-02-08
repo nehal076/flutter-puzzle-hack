@@ -21,12 +21,12 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   double initialX = 0;
   double initialY = 0;
   double blockSize = 100;
-  double linearVelocity = 60;
+  double linearVelocity = 80;
   int numBlocks = 2;
   int refreshMiliseconds = 40;
   String ballState = "";
   double? radians;
-  double velocity = 0.03;
+  double velocity = 0.05;
   var lastBlock = {"x": 0.0, "y": 0.0};
 
   List<String> flow = ["L_UD", "C_UR", "C_LU", "C_BR", "C_LB", "L_UD"];
