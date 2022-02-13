@@ -19,12 +19,12 @@ class Level {
 class StageStartPoint {
   final int x;
   final int y;
-  final Direction direction;
+  final Position position;
 
   const StageStartPoint({
     required this.x,
     required this.y,
-    required this.direction,
+    required this.position,
   });
 }
 
@@ -44,7 +44,11 @@ List<Level> levelData = [
       [0, 0, 0, 0],
     ],
     flow: ["L_UD", "C_UR", "C_LU", "C_BR", "C_LB", "L_UD"],
-    stageStartPoint: const StageStartPoint(x: 1, y: 1, direction: Direction.up),
+    stageStartPoint: const StageStartPoint(
+      x: 1,
+      y: 1,
+      position: Position.down,
+    ),
   ),
   Level(
     levelNum: 2,
@@ -60,7 +64,7 @@ List<Level> levelData = [
       [17, 16, 18, 0],
       [0, 21, 0, 0],
     ],
-    flow: ["L_DU", "C_DL", "C_RD", "L_UD", "C_UR", "L_LR", "C_LU", "L_DU"],
-    stageStartPoint: const StageStartPoint(x: 1, y: 1, direction: Direction.up),
+    flow: ["L_DU", "C_BL", "C_RB", "L_UD", "C_UR", "L_LR", "C_LU", "L_DU"],
+    stageStartPoint: const StageStartPoint(x: 1, y: 1, position: Position.down),
   ),
 ];

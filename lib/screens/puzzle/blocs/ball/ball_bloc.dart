@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
-
-import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/main.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:roll_the_ball/utils/arc_map.dart';
@@ -13,7 +13,6 @@ part 'ball_state.dart';
 class BallBloc extends Bloc<BallEvent, BallState> {
   BallBloc() : super(BallInitial()) {
     on<InitalizeBall>(_initializeBall);
-    add(InitalizeBall());
     on<RollBall>(_rollBall);
     on<UpdateBall>(_updateBall);
     on<UpdateLinearState>(_updateLinearState);
@@ -26,6 +25,8 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   double initialX = 0;
   double initialY = 0;
   double blockSize = 100;
+  double boardSize = 0;
+  double ballSize = 0;
   double linearVelocity = 80;
   static int refreshMiliseconds = 40;
   String ballState = "";
@@ -35,37 +36,53 @@ class BallBloc extends Bloc<BallEvent, BallState> {
 
   static var duration = Duration(milliseconds: refreshMiliseconds);
   Timer timer = Timer(duration, () {});
-
-  List<String> flow = [
-    "L_DU",
-    "C_BL",
-    "C_RB",
-    "L_UD",
-    "C_UR",
-    "L_LR",
-    "C_LU",
-    "L_DU"
-  ];
-
-  List<int> stageStartPoint = [1, 1];
+  List<String> flow = [];
+  List<int> stageStartPoint = [];
 
   Map arcMap = Arc.arcMap;
 
   _initializeBall(InitalizeBall event, Emitter<BallState> emit) {
-    var context = navigatorKey.currentContext!;
+    var context = event.context;
 
-    final int ballSize = PuzzleBloc.getBallSize(context);
-    final double _boardSize = PuzzleBloc.getBoardSize(context);
+    var puzzleBloc = context.read<PuzzleBloc>();
 
-    blockSize = _boardSize / PuzzleBloc().numBlocks;
+    flow = puzzleBloc.flow;
 
-    initialX = blockSize * stageStartPoint[0] + blockSize / 2 - ballSize / 2;
-    initialY = blockSize * stageStartPoint[1] + blockSize / 2;
+    boardSize = PuzzleBloc.getBoardSize(context);
+    ballSize = PuzzleBloc.getBallSize(context);
+    blockSize = boardSize / puzzleBloc.numBlocks;
+
+    getInitialCoordinates(puzzleBloc);
 
     ballX = initialX;
     ballY = initialY;
 
     emit(BallInitial());
+  }
+
+  getInitialCoordinates(PuzzleBloc puzzleBloc) {
+    var start = puzzleBloc.stageStartPoint!;
+    var position = start.position;
+    switch (position) {
+      case Position.up:
+        initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
+        initialY = blockSize * start.y;
+        break;
+
+      case Position.down:
+        initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
+        initialY = blockSize * start.y + blockSize;
+        break;
+
+      case Position.right:
+        initialX = blockSize * start.x + blockSize - ballSize / 2;
+        initialY = blockSize * start.y;
+        break;
+      case Position.left:
+        initialX = blockSize * start.x - ballSize / 2;
+        initialY = blockSize * start.y;
+        break;
+    }
   }
 
   curveAdjustment(String arc, double x, double y) {

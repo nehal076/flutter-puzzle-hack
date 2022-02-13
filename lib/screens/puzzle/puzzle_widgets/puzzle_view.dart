@@ -31,6 +31,9 @@ class _PuzzleViewState extends State<PuzzleView> {
 
         puzzleBloc.playerLevel = player.initialState;
         puzzleBloc.playerLevelWin = player.winningState;
+        puzzleBloc.numBlocks = player.initialState[0].length;
+        puzzleBloc.stageStartPoint = player.stageStartPoint;
+        puzzleBloc.flow = player.flow;
 
         List<List<int>> level = puzzleBloc.playerLevel;
         return IntrinsicWidth(

@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:roll_the_ball/utils/levels_data.dart';
 
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
@@ -14,10 +15,10 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   }
 
   List<List<int>> playerLevel = [];
-
   List<List<int>> playerLevelWin = [];
-
-  int numBlocks = 4;
+  int numBlocks = 0;
+  List<String> flow = [];
+  StageStartPoint? stageStartPoint;
 
   final sound = AudioCache();
 
@@ -60,12 +61,19 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     return boardSize;
   }
 
-  static getBallSize(BuildContext context) {
+  static double getBallSize(BuildContext context) {
     return 25; //TODO make dynamic later
   }
 }
 
 enum Direction {
+  up,
+  down,
+  left,
+  right,
+}
+
+enum Position {
   up,
   down,
   left,

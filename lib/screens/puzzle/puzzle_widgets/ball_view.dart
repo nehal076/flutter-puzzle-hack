@@ -12,6 +12,13 @@ class BallView extends StatefulWidget {
 
 class _BallViewState extends State<BallView> {
   @override
+  void initState() {
+    super.initState();
+
+    BlocProvider.of<BallBloc>(context).add(InitalizeBall(context));
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<BallBloc, BallState>(
       builder: (context, state) {

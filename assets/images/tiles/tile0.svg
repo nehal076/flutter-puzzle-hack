@@ -1,1 +1,5 @@
-<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400" viewBox="0, 0, 400,400"><g id="svgg"><path id="path0" d="M2.041 24.490 C 5.504 30.093,394.496 30.093,397.959 24.490 C 399.628 21.790,332.615 20.408,200.000 20.408 C 67.385 20.408,0.372 21.790,2.041 24.490 " stroke="none" fill="#000000" fill-rule="evenodd"></path></g></svg>
+<svg id="svg" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="400" height="400" viewBox="0, 0, 400,400">
+<g id="svgg">
+<path id="path0" d="M2.041 24.490 C 5.504 30.093,394.496 30.093,397.959 24.490 C 399.628 21.790,332.615 20.408,200.000 20.408 C 67.385 20.408,0.372 21.790,2.041 24.490 " stroke="none" fill="#000000" fill-rule="evenodd"></path>
+</g>
+</svg>
