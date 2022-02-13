@@ -16,11 +16,7 @@ class PuzzleView extends StatefulWidget {
 class _PuzzleViewState extends State<PuzzleView> {
   @override
   Widget build(BuildContext context) {
-    const int _numBlocks = 4; //TODO: Get this from stage data
-    final double _width = MediaQuery.of(context).size.width * 0.90;
-    final double _height = MediaQuery.of(context).size.height * 0.90;
-
-    final double _boardSize = _width > _height ? _height : _width;
+    final double _boardSize = PuzzleBloc.getBoardSize(context);
     return BlocBuilder<PuzzleBloc, PuzzleState>(
       builder: (context, state) {
         final puzzleBloc = context.read<PuzzleBloc>();
@@ -58,8 +54,8 @@ class _PuzzleViewState extends State<PuzzleView> {
                           puzzleBloc.add(Swipe(context, Direction.left, i, j));
                         },
                         child: SizedBox(
-                          width: _boardSize / _numBlocks,
-                          height: _boardSize / _numBlocks,
+                          width: _boardSize / puzzleBloc.numBlocks,
+                          height: _boardSize / puzzleBloc.numBlocks,
                           child: SvgPicture.asset(
                             'assets/images/tiles/tile${level[i][j]}.svg',
                           ),

@@ -17,6 +17,8 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   List<List<int>> playerLevelWin = [];
 
+  int numBlocks = 4;
+
   final sound = AudioCache();
 
   _swipe(Swipe event, Emitter<PuzzleState> emit) {
@@ -47,6 +49,19 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     if (const DeepCollectionEquality().equals(playerLevel, playerLevelWin)) {
       BlocProvider.of<BallBloc>(event.context).add(RollBall());
     }
+  }
+
+  static getBoardSize(BuildContext context) {
+    final double _width = MediaQuery.of(context).size.width * 0.90;
+    final double _height = MediaQuery.of(context).size.height * 0.90;
+
+    final double boardSize = _width > _height ? _height : _width;
+
+    return boardSize;
+  }
+
+  static getBallSize(BuildContext context) {
+    return 25; //TODO make dynamic later
   }
 }
 

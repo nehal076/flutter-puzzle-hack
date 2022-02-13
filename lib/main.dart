@@ -16,6 +16,8 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
 class _MyAppState extends State<MyApp> {
   AppRouter router = AppRouter();
 
@@ -26,6 +28,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      navigatorKey: navigatorKey,
       onGenerateRoute: router.generateRoute,
     );
   }

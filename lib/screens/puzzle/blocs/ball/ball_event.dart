@@ -4,6 +4,8 @@ abstract class BallEvent {
   const BallEvent();
 }
 
+class InitalizeBall extends BallEvent {}
+
 class UpdateBall extends BallEvent {}
 
 class UpdateLinearState extends BallEvent {}

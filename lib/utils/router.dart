@@ -4,6 +4,7 @@ import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/puzzle_screen.dart';
 import 'package:roll_the_ball/screens/start/start_screen.dart';
+import 'package:roll_the_ball/utils/blocs/player/player_bloc.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -33,6 +34,9 @@ class AppRouter {
               BlocProvider(
                 create: (context) => BallBloc(),
               ),
+              BlocProvider(
+                create: (context) => PlayerBloc(),
+              ),
             ],
             child: PuzzleScreen(level: level),
           ),
@@ -48,6 +52,9 @@ class AppRouter {
               ),
               BlocProvider(
                 create: (context) => BallBloc(),
+              ),
+              BlocProvider(
+                create: (context) => PlayerBloc(),
               ),
             ],
             child: PuzzleScreen(level: level),

@@ -2,13 +2,18 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:bloc/bloc.dart';
+import 'package:roll_the_ball/main.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:roll_the_ball/utils/arc_map.dart';
+import 'package:roll_the_ball/utils/popup/winning/win_popup.dart';
 
 part 'ball_event.dart';
 part 'ball_state.dart';
 
 class BallBloc extends Bloc<BallEvent, BallState> {
   BallBloc() : super(BallInitial()) {
+    on<InitalizeBall>(_initializeBall);
+    add(InitalizeBall());
     on<RollBall>(_rollBall);
     on<UpdateBall>(_updateBall);
     on<UpdateLinearState>(_updateLinearState);
@@ -22,16 +27,46 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   double initialY = 0;
   double blockSize = 100;
   double linearVelocity = 80;
-  int numBlocks = 2;
-  int refreshMiliseconds = 40;
+  static int refreshMiliseconds = 40;
   String ballState = "";
   double? radians;
   double velocity = 0.05;
   var lastBlock = {"x": 0.0, "y": 0.0};
 
-  List<String> flow = ["L_UD", "C_UR", "C_LU", "C_BR", "C_LB", "L_UD"];
+  static var duration = Duration(milliseconds: refreshMiliseconds);
+  Timer timer = Timer(duration, () {});
+
+  List<String> flow = [
+    "L_DU",
+    "C_BL",
+    "C_RB",
+    "L_UD",
+    "C_UR",
+    "L_LR",
+    "C_LU",
+    "L_DU"
+  ];
+
+  List<int> stageStartPoint = [1, 1];
 
   Map arcMap = Arc.arcMap;
+
+  _initializeBall(InitalizeBall event, Emitter<BallState> emit) {
+    var context = navigatorKey.currentContext!;
+
+    final int ballSize = PuzzleBloc.getBallSize(context);
+    final double _boardSize = PuzzleBloc.getBoardSize(context);
+
+    blockSize = _boardSize / PuzzleBloc().numBlocks;
+
+    initialX = blockSize * stageStartPoint[0] + blockSize / 2 - ballSize / 2;
+    initialY = blockSize * stageStartPoint[1] + blockSize / 2;
+
+    ballX = initialX;
+    ballY = initialY;
+
+    emit(BallInitial());
+  }
 
   curveAdjustment(String arc, double x, double y) {
     switch (arc) {
@@ -63,13 +98,20 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     ballY = initialY;
     lastBlock["x"] = ballX;
     lastBlock["y"] = ballY;
-    Timer.periodic(Duration(milliseconds: refreshMiliseconds), (timer) {
+    timer = Timer.periodic(duration, (timer) {
       add(UpdateBall());
     });
   }
 
   _updateBall(UpdateBall event, Emitter<BallState> emit) {
+    if (state is BallRollComplete) {
+      timer.cancel();
+      var context = navigatorKey.currentContext!;
+      WinPopup.show(context);
+    }
+
     if (ballState == "") {
+      emit(BallRollComplete());
       return;
     }
 

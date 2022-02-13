@@ -12,3 +12,5 @@ class BallRolling extends BallState {
 
   BallRolling(this.ballX, this.ballY);
 }
+
+class BallRollComplete extends BallState {}

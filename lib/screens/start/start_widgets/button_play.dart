@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/utils/popup/levels_popup.dart';
+import 'package:roll_the_ball/utils/popup/levels/levels_popup.dart';
 
 class ButtonPlay extends StatefulWidget {
   const ButtonPlay({Key? key}) : super(key: key);
@@ -19,7 +19,6 @@ class _ButtonPlayState extends State<ButtonPlay> {
       child: InkWell(
         onTap: () {
           LevelPopup.show(context);
-          // Navigator.pushNamed(context, 'puzzle_screen');
         },
         onHover: (value) {
           setState(() {

@@ -6,17 +6,14 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        alignment: Alignment.center,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/cover.jpg'),
-            fit: BoxFit.cover,
-          ),
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/cover.jpg'),
+          fit: BoxFit.fill,
         ),
-        child: child,
       ),
+      child: child,
     );
   }
 }
