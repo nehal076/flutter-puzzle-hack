@@ -17,6 +17,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   }
 
   List<List<int>> initialState = [];
+  List<List<int>> playingState = [];
   List<List<int>> winningState = [];
   int numBlocks = 0;
   List<String> flow = [];
@@ -32,6 +33,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
 
     initialState = player.initialState;
+    playingState = player.initialState;
     winningState = player.winningState;
     numBlocks = player.initialState[0].length;
     stageStartPoint = player.stageStartPoint;
@@ -47,25 +49,35 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     switch (direction) {
       case Direction.up:
-        initialState[i - 1][j] = initialState[i][j];
+        if (playingState[i - 1][j] == 0) {
+          playingState[i - 1][j] = playingState[i][j];
+          playingState[i][j] = 0;
+        }
         break;
       case Direction.down:
-        initialState[i + 1][j] = initialState[i][j];
+        if (playingState[i + 1][j] == 0) {
+          playingState[i - 1][j] = playingState[i][j];
+          playingState[i][j] = 0;
+        }
         break;
       case Direction.left:
-        initialState[i][j - 1] = initialState[i][j];
+        if (playingState[i][j - 1] == 0) {
+          playingState[i][j - 1] = playingState[i][j];
+          playingState[i][j] = 0;
+        }
         break;
       case Direction.right:
-        initialState[i][j + 1] = initialState[i][j];
+        if (playingState[i][j + 1] == 0) {
+          playingState[i][j + 1] = playingState[i][j];
+          playingState[i][j] = 0;
+        }
         break;
     }
-
-    initialState[i][j] = 0;
 
     sound.play('audio/tile.mp3', volume: 0.5);
     emit(TileMoved());
 
-    if (const DeepCollectionEquality().equals(initialState, winningState)) {
+    if (const DeepCollectionEquality().equals(playingState, winningState)) {
       BlocProvider.of<BallBloc>(event.context).add(RollBall());
     }
   }
