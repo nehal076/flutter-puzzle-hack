@@ -71,7 +71,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
 
       case Position.down:
         initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y + blockSize;
+        initialY = blockSize * start.y + blockSize - ballSize;
         break;
 
       case Position.right:

@@ -22,7 +22,6 @@ class _BallViewState extends State<BallView> {
   Widget build(BuildContext context) {
     return BlocBuilder<BallBloc, BallState>(
       builder: (context, state) {
-        print(state);
         final ballBloc = context.read<BallBloc>();
         double ballX = ballBloc.ballX;
         double ballY = ballBloc.ballY;

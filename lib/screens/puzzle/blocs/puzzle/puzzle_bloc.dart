@@ -5,22 +5,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:roll_the_ball/utils/levels_data.dart';
+import 'package:roll_the_ball/utils/shared_prefs.dart';
 
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
 
 class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   PuzzleBloc() : super(PuzzleInitial()) {
+    on<InitPuzzle>(_initPuzzle);
     on<Swipe>(_swipe);
   }
 
-  List<List<int>> playerLevel = [];
-  List<List<int>> playerLevelWin = [];
+  List<List<int>> initialState = [];
+  List<List<int>> winningState = [];
   int numBlocks = 0;
   List<String> flow = [];
   StageStartPoint? stageStartPoint;
 
   final sound = AudioCache();
+
+  _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
+    String playerLevel =
+        SharedPrefUtils.playerLevel == '' ? '1' : SharedPrefUtils.playerLevel;
+    // playerLevel = '2';
+
+    Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
+
+    initialState = player.initialState;
+    winningState = player.winningState;
+    numBlocks = player.initialState[0].length;
+    stageStartPoint = player.stageStartPoint;
+    flow = player.flow;
+
+    emit(PuzzleInitial());
+  }
 
   _swipe(Swipe event, Emitter<PuzzleState> emit) {
     Direction direction = event.direction;
@@ -29,25 +47,25 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     switch (direction) {
       case Direction.up:
-        playerLevel[i - 1][j] = playerLevel[i][j];
+        initialState[i - 1][j] = initialState[i][j];
         break;
       case Direction.down:
-        playerLevel[i + 1][j] = playerLevel[i][j];
+        initialState[i + 1][j] = initialState[i][j];
         break;
       case Direction.left:
-        playerLevel[i][j - 1] = playerLevel[i][j];
+        initialState[i][j - 1] = initialState[i][j];
         break;
       case Direction.right:
-        playerLevel[i][j + 1] = playerLevel[i][j];
+        initialState[i][j + 1] = initialState[i][j];
         break;
     }
 
-    playerLevel[i][j] = 0;
+    initialState[i][j] = 0;
 
     sound.play('audio/tile.mp3', volume: 0.5);
     emit(TileMoved());
 
-    if (const DeepCollectionEquality().equals(playerLevel, playerLevelWin)) {
+    if (const DeepCollectionEquality().equals(initialState, winningState)) {
       BlocProvider.of<BallBloc>(event.context).add(RollBall());
     }
   }

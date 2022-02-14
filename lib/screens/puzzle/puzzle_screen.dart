@@ -16,13 +16,18 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
   @override
   Widget build(BuildContext context) {
     return Background(
-      child: Board(
-        child: Stack(
-          children: const [
-            PuzzleView(),
-            BallView(),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Board(
+            child: Stack(
+              children: const [
+                PuzzleView(),
+                BallView(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
