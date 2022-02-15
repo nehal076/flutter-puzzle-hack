@@ -4,6 +4,8 @@ abstract class PuzzleEvent {
   const PuzzleEvent();
 }
 
+class InitPuzzle extends PuzzleEvent {}
+
 class Swipe extends PuzzleEvent {
   final BuildContext context;
   final Direction direction;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/screens/puzzle/puzzle_widgets/background.dart';
-import 'package:roll_the_ball/screens/puzzle/puzzle_widgets/ball_view.dart';
-import 'package:roll_the_ball/screens/puzzle/puzzle_widgets/board.dart';
-import 'package:roll_the_ball/screens/puzzle/puzzle_widgets/puzzle_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'blocs/puzzle/puzzle_bloc.dart';
+import 'puzzle_widgets/widgets.dart';
 
 class PuzzleScreen extends StatefulWidget {
   final int level;
@@ -14,15 +14,28 @@ class PuzzleScreen extends StatefulWidget {
 
 class _PuzzleScreenState extends State<PuzzleScreen> {
   @override
+  void initState() {
+    super.initState();
+    context.read<PuzzleBloc>().add(InitPuzzle());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Background(
-      child: Board(
-        child: Stack(
-          children: const [
-            PuzzleView(),
-            BallView(),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const PuzzleTopView(),
+          Board(
+            child: Stack(
+              children: const [
+                PuzzleView(),
+                BallView(),
+              ],
+            ),
+          ),
+          const PuzzleBottomView(),
+        ],
       ),
     );
   }

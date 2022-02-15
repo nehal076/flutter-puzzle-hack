@@ -43,7 +43,14 @@ class WinPopup {
               ),
               Positioned(
                 top: 15,
-                child: Image.asset('assets/images/star-end.png'),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/star-small.png'),
+                    Image.asset('assets/images/star-big.png'),
+                    Image.asset('assets/images/star-small.png')
+                  ],
+                ),
               ),
               const Positioned(
                 top: 70,

@@ -47,7 +47,7 @@ List<Level> levelData = [
     stageStartPoint: const StageStartPoint(
       x: 1,
       y: 1,
-      position: Position.down,
+      position: Position.up,
     ),
   ),
   Level(

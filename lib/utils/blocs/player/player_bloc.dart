@@ -22,8 +22,8 @@ class PlayerBloc extends Bloc<PlayerEvent, PlayerState> {
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
 
-    puzzleBloc.playerLevel = player.initialState;
-    puzzleBloc.playerLevelWin = player.winningState;
+    puzzleBloc.initialState = player.initialState;
+    puzzleBloc.winningState = player.winningState;
     puzzleBloc.numBlocks = player.initialState[0].length;
   }
 }
