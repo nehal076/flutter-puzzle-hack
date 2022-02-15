@@ -28,12 +28,26 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     String playerLevel =
         SharedPrefUtils.playerLevel == '' ? '1' : SharedPrefUtils.playerLevel;
-    // playerLevel = '2';
+    playerLevel = '2';
+
+    print(levelData[1].initialState);
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
 
-    initialState = player.initialState;
-    playingState = player.initialState;
+    List<List<int>> arr = [];
+
+    for (var i = 0; i < player.initialState.length; i++) {
+      List<int> temp = [];
+
+      for (var j = 0; j < player.initialState[i].length; j++) {
+        temp.add(player.initialState[i][j]);
+      }
+
+      arr.add(temp);
+    }
+
+    initialState = [...player.initialState];
+    playingState = arr;
     winningState = player.winningState;
     numBlocks = player.initialState[0].length;
     stageStartPoint = player.stageStartPoint;
@@ -49,30 +63,20 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     switch (direction) {
       case Direction.up:
-        if (playingState[i - 1][j] == 0) {
-          playingState[i - 1][j] = playingState[i][j];
-          playingState[i][j] = 0;
-        }
+        playingState[i - 1][j] = playingState[i][j];
         break;
       case Direction.down:
-        if (playingState[i + 1][j] == 0) {
-          playingState[i - 1][j] = playingState[i][j];
-          playingState[i][j] = 0;
-        }
+        playingState[i + 1][j] = playingState[i][j];
         break;
       case Direction.left:
-        if (playingState[i][j - 1] == 0) {
-          playingState[i][j - 1] = playingState[i][j];
-          playingState[i][j] = 0;
-        }
+        playingState[i][j - 1] = playingState[i][j];
         break;
       case Direction.right:
-        if (playingState[i][j + 1] == 0) {
-          playingState[i][j + 1] = playingState[i][j];
-          playingState[i][j] = 0;
-        }
+        playingState[i][j + 1] = playingState[i][j];
         break;
     }
+
+    playingState[i][j] = 0;
 
     sound.play('audio/tile.mp3', volume: 0.5);
     emit(TileMoved());

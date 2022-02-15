@@ -13,16 +13,23 @@ class PuzzleView extends StatefulWidget {
 
 class _PuzzleViewState extends State<PuzzleView> {
   List<List<int>> level = [];
+  late PuzzleBloc puzzleBloc;
+
+  @override
+  void initState() {
+    super.initState();
+
+    puzzleBloc = context.read<PuzzleBloc>();
+  }
 
   @override
   Widget build(BuildContext context) {
     final double _boardSize = PuzzleBloc.getBoardSize(context);
     return BlocBuilder<PuzzleBloc, PuzzleState>(
       builder: (context, state) {
-        print(state);
-        final puzzleBloc = context.read<PuzzleBloc>();
-
-        level = puzzleBloc.initialState;
+        if (state is PuzzleInitial) {
+          level = puzzleBloc.playingState;
+        }
 
         return IntrinsicWidth(
           child: Column(

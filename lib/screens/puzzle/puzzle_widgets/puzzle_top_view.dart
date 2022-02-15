@@ -27,19 +27,16 @@ class _PuzzleTopViewState extends State<PuzzleTopView> {
           ),
         ),
         SizedBox(
-          width: 200,
-          child: FittedBox(
-            fit: BoxFit.fitWidth,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Image.asset('assets/images/star-small.png', fit: BoxFit.cover),
-                Image.asset('assets/images/star-big.png', fit: BoxFit.cover),
-                Image.asset('assets/images/star-small.png', fit: BoxFit.cover)
-              ],
-            ).pOnly(top: 20),
-          ),
+          // width: 200,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Image.asset('assets/images/star-small.png', fit: BoxFit.cover),
+              Image.asset('assets/images/star-big.png', fit: BoxFit.cover),
+              Image.asset('assets/images/star-small.png', fit: BoxFit.cover)
+            ],
+          ).pOnly(top: 20),
         )
       ],
     );
