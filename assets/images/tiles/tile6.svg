@@ -55,8 +55,8 @@
         <path fill="none" stroke="#444542" paint-order="fill stroke markers" d=" M 250 0 L 250 350" stroke-miterlimit="10" stroke-width="166.66" stroke-dasharray="" />
         <path fill="#444542" stroke="none" paint-order="stroke fill markers" d=" M 333.33 349 A 83.33 83.33 0 0 1 166.67000000000002 349" />
         <path fill="none" stroke="none" />
-        <text fill="url(#PSRwfGqJWUFX)" stroke="none" font-family="Verdana" font-size="160px" font-style="normal" font-weight="bold" text-decoration="normal" x="180" y="150" text-anchor="start" dominant-baseline="alphabetic">
+        <!-- <text fill="url(#PSRwfGqJWUFX)" stroke="none" font-family="Verdana" font-size="160px" font-style="normal" font-weight="bold"  x="180" y="150" text-anchor="start" dominant-baseline="alphabetic">
             ^
-        </text>
+        </text> -->
     </g>
 </svg>

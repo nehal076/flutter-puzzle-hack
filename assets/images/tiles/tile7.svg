@@ -4,10 +4,17 @@
             <stop offset="0" stop-color="#eeeeee" />
             <stop offset="1" stop-color="#71797E" />
         </linearGradient>
+        
         <linearGradient id="CLNgyzxsLCxZ" x1="0px" x2="500px" y1="0px" y2="500px" gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#f5f7fa" />
             <stop offset="1" stop-color="#b8c6db" />
         </linearGradient>
+
+        <linearGradient id="c444542" x1="0px" x2="500px" y1="0px" y2="500px" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#444542" />
+            <stop offset="1" stop-color="#444542" />
+        </linearGradient>
+
     </defs>
     <g stroke="none" fill="url(#CLNgyzxsLCxZ)">
         <path
@@ -53,10 +60,10 @@
             stroke-dasharray=""
         />
         <path fill="none" stroke="#444542" paint-order="fill stroke markers" d=" M 0 250 L 350 250" stroke-miterlimit="10" stroke-width="166.66" stroke-dasharray="" />
-        <path fill="#444542" stroke="none" paint-order="stroke fill markers" d=" M 349 166.67000000000002 A 83.33 83.33 0 0 1 349 333.33" />
+        <path fill="url(#c444542)" stroke="none" paint-order="stroke fill markers" d=" M 349 166.67000000000002 A 83.33 83.33 0 0 1 349 333.33" />
         <path fill="" stroke="none" d="" />
-        <g transform="translate(50,300)">
-            <text fill="" stroke="none" font-family="Verdana" font-size="160px" font-style="normal" font-weight="bold" text-decoration="normal" x="0" y="0" text-anchor="start" dominant-baseline="alphabetic">&lt;</text>
-        </g>
+        <!-- <g transform="translate(50,300)">
+            <text fill="" stroke="none" font-family="Verdana" font-size="160px" font-style="normal" font-weight="bold"  x="0" y="0" text-anchor="start" dominant-baseline="alphabetic">&lt;</text>
+        </g> -->
     </g>
 </svg>
