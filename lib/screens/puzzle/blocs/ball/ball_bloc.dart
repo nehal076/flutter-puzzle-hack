@@ -66,21 +66,21 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     switch (position) {
       case Position.up:
         initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y - ballSize / 2;
+        initialY = blockSize * start.y + blockSize * .15;
         break;
 
       case Position.down:
         initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y + blockSize - ballSize;
+        initialY = blockSize * start.y - ballSize + blockSize * .85;
         break;
 
       case Position.right:
-        initialX = blockSize * start.x + blockSize - ballSize / 2;
-        initialY = blockSize * start.y;
+        initialX = blockSize * start.x - ballSize + blockSize * .85;
+        initialY = blockSize * start.y + blockSize / 2 - ballSize / 2;
         break;
       case Position.left:
-        initialX = blockSize * start.x - ballSize / 2;
-        initialY = blockSize * start.y;
+        initialX = blockSize * start.x + blockSize * .15;
+        initialY = blockSize * start.y + blockSize / 2 - ballSize / 2;
         break;
     }
   }
