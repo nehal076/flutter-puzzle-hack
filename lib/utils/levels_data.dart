@@ -44,6 +44,7 @@ List<Level> levelData = [
       [0, 0, 0, 0],
     ],
     flow: ["L_UD", "C_UR", "C_LU", "C_BR", "C_LB", "L_UD"],
+    // flow: ["L_UD"],
     stageStartPoint: const StageStartPoint(
       x: 1,
       y: 1,

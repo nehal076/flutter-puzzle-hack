@@ -3,12 +3,11 @@ import 'package:flutter/material.dart';
 class Ball extends StatelessWidget {
   final double x;
   final double y;
+  final double ballSize;
 
-  const Ball({
-    Key? key,
-    required this.x,
-    required this.y,
-  }) : super(key: key);
+  const Ball(
+      {Key? key, required this.x, required this.y, required this.ballSize})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +15,8 @@ class Ball extends StatelessWidget {
       top: y,
       left: x,
       child: Container(
-        width: 25,
-        height: 25,
+        width: ballSize,
+        height: ballSize,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,

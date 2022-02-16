@@ -90,10 +90,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     return boardSize;
   }
-
-  static double getBallSize(BuildContext context) {
-    return 25; //TODO make dynamic later
-  }
 }
 
 enum Direction {

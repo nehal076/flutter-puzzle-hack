@@ -49,8 +49,8 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     flow = puzzleBloc.flow;
 
     boardSize = PuzzleBloc.getBoardSize(context);
-    ballSize = PuzzleBloc.getBallSize(context);
     blockSize = boardSize / puzzleBloc.numBlocks;
+    ballSize = blockSize * 0.28;
 
     getInitialCoordinates(puzzleBloc);
 
@@ -66,7 +66,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     switch (position) {
       case Position.up:
         initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y;
+        initialY = blockSize * start.y - ballSize / 2;
         break;
 
       case Position.down:
@@ -158,7 +158,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     ballX = lastBlockData["x"] + cos(radians!) * blockSize / 2;
     ballY = lastBlockData["y"] + sin(radians!) * blockSize / 2;
 
-    emit(BallRolling(ballX, ballY));
+    emit(BallRolling(ballX, ballY, ballSize));
 
     if (operator == ">") {
       if (radians! < degreeToRadians(end)) {
@@ -250,7 +250,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     ballX = ballX;
     ballY = ballY;
 
-    emit(BallRolling(ballX, ballY));
+    emit(BallRolling(ballX, ballY, ballSize));
   }
 
   double degreeToRadians(int degrees) {
