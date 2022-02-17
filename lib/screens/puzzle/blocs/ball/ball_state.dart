@@ -9,8 +9,8 @@ class BallInitial extends BallState {}
 class BallRolling extends BallState {
   final double ballX;
   final double ballY;
-
-  BallRolling(this.ballX, this.ballY);
+  final double ballSize;
+  BallRolling(this.ballX, this.ballY, this.ballSize);
 }
 
 class BallRollComplete extends BallState {}

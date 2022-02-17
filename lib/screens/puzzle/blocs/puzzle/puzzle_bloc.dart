@@ -27,7 +27,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     String playerLevel =
-        SharedPrefUtils.playerLevel == '' ? '1' : SharedPrefUtils.playerLevel;
+        SharedPrefUtils.playerLevel == '' ? '2' : SharedPrefUtils.playerLevel;
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
 
@@ -90,10 +90,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     final double boardSize = _width > _height ? _height : _width;
 
     return boardSize;
-  }
-
-  static double getBallSize(BuildContext context) {
-    return 25; //TODO make dynamic later
   }
 }
 

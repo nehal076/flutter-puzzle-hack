@@ -25,12 +25,12 @@ class _BallViewState extends State<BallView> {
         final ballBloc = context.read<BallBloc>();
         double ballX = ballBloc.ballX;
         double ballY = ballBloc.ballY;
-
+        double ballSize = ballBloc.ballSize;
         if (state is BallRolling) {
           ballX = state.ballX;
           ballY = state.ballY;
         }
-        return Ball(x: ballX, y: ballY);
+        return Ball(x: ballX, y: ballY, ballSize: ballSize);
       },
     );
   }

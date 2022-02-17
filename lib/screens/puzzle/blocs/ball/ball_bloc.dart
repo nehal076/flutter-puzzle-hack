@@ -32,6 +32,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   String ballState = "";
   double? radians;
   double velocity = 0.05;
+  int initialFlowLength = 0;
   var lastBlock = {"x": 0.0, "y": 0.0};
 
   static var duration = Duration(milliseconds: refreshMiliseconds);
@@ -46,11 +47,11 @@ class BallBloc extends Bloc<BallEvent, BallState> {
 
     var puzzleBloc = context.read<PuzzleBloc>();
 
-    flow = [...puzzleBloc.flow];
-
+    flow = puzzleBloc.flow;
+    initialFlowLength = flow.length;
     boardSize = PuzzleBloc.getBoardSize(context);
-    ballSize = PuzzleBloc.getBallSize(context);
     blockSize = boardSize / puzzleBloc.numBlocks;
+    ballSize = blockSize * 0.28;
 
     getInitialCoordinates(puzzleBloc);
 
@@ -66,21 +67,21 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     switch (position) {
       case Position.up:
         initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y;
+        initialY = blockSize * start.y + blockSize * .15;
         break;
 
       case Position.down:
         initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y + blockSize - ballSize;
+        initialY = blockSize * start.y - ballSize + blockSize * .85;
         break;
 
       case Position.right:
-        initialX = blockSize * start.x + blockSize - ballSize / 2;
-        initialY = blockSize * start.y;
+        initialX = blockSize * start.x - ballSize + blockSize * .85;
+        initialY = blockSize * start.y + blockSize / 2 - ballSize / 2;
         break;
       case Position.left:
-        initialX = blockSize * start.x - ballSize / 2;
-        initialY = blockSize * start.y;
+        initialX = blockSize * start.x + blockSize * .15;
+        initialY = blockSize * start.y + blockSize / 2 - ballSize / 2;
         break;
     }
   }
@@ -158,7 +159,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     ballX = lastBlockData["x"] + cos(radians!) * blockSize / 2;
     ballY = lastBlockData["y"] + sin(radians!) * blockSize / 2;
 
-    emit(BallRolling(ballX, ballY));
+    emit(BallRolling(ballX, ballY, ballSize));
 
     if (operator == ">") {
       if (radians! < degreeToRadians(end)) {
@@ -179,7 +180,12 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     String st = ballState;
     if (arcMap[st]["end"] == null) {
       if (arcMap[st]["type"] == "V") {
-        arcMap[st]["end"] = ballY + arcMap[st]["direction"] * blockSize;
+        if (flow.length == initialFlowLength - 1 || flow.isEmpty) {
+          arcMap[st]["end"] =
+              ballY + arcMap[st]["direction"] * blockSize * 0.85 - ballSize / 2;
+        } else {
+          arcMap[st]["end"] = ballY + arcMap[st]["direction"] * blockSize;
+        }
         ballY = ballY + arcMap[st]["direction"] * velocity * linearVelocity;
       } else {
         arcMap[st]["end"] = ballX + arcMap[st]["direction"] * blockSize;
@@ -250,7 +256,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     ballX = ballX;
     ballY = ballY;
 
-    emit(BallRolling(ballX, ballY));
+    emit(BallRolling(ballX, ballY, ballSize));
   }
 
   double degreeToRadians(int degrees) {
