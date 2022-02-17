@@ -21,6 +21,13 @@ class Ball extends StatelessWidget {
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 10,
+              offset: Offset(0, 0),
+            ),
+          ],
         ),
       ),
     );

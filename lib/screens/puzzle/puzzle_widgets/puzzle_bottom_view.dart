@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../blocs/puzzle/puzzle_bloc.dart';
@@ -38,6 +39,7 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
             }),
             GameButton("18", "Restart", onTap: () {
               context.read<PuzzleBloc>().add(InitPuzzle());
+              context.read<BallBloc>().add(InitalizeBall(context));
             }),
             GameButton("15", "Undo", onTap: () {}),
             GameButton("14", "Hint", onTap: () {}),

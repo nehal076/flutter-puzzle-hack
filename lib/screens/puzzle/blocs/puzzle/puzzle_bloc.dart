@@ -28,9 +28,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     String playerLevel =
         SharedPrefUtils.playerLevel == '' ? '1' : SharedPrefUtils.playerLevel;
-    playerLevel = '2';
-
-    print(levelData[1].initialState);
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
 
@@ -51,7 +48,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     winningState = player.winningState;
     numBlocks = player.initialState[0].length;
     stageStartPoint = player.stageStartPoint;
-    flow = player.flow;
+    flow = [...player.flow];
 
     emit(PuzzleInitial());
   }

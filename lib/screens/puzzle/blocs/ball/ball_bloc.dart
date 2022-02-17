@@ -46,7 +46,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
 
     var puzzleBloc = context.read<PuzzleBloc>();
 
-    flow = puzzleBloc.flow;
+    flow = [...puzzleBloc.flow];
 
     boardSize = PuzzleBloc.getBoardSize(context);
     ballSize = PuzzleBloc.getBallSize(context);
