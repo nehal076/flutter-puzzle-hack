@@ -7,37 +7,40 @@ class Background extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Center(
-      child: Stack(
-        children: <Widget>[
-          SvgPicture.asset(
-            'assets/images/background-6.svg',
-            fit: BoxFit.cover,
-            alignment: Alignment.center,
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-          ),
-          Container(
-            alignment: Alignment.center,
-            width: double.infinity,
-            height: double.infinity,
-            child: child,
-          ),
-        ],
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              height: height,
+              width: width,
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                clipBehavior: Clip.hardEdge,
+                child: SvgPicture.asset(
+                  'assets/images/board-background.svg',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: double.infinity,
+              height: double.infinity,
+              child: child,
+            ),
+          ],
+        ),
       ),
     );
   }
 }
-/* SVG mein error mil rahi thi :( */
-// Center(
-//   child: Stack(
-//     alignment: Alignment.center,
-//     children: [
-//       SvgPicture.asset(
-//         'assets/images/wood.svg',
-//         fit: BoxFit.cover,
-//       ),
-//       child,
-//     ],
-//   ),
-// );

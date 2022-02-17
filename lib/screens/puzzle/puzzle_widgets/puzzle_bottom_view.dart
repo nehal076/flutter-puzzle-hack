@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import '../blocs/puzzle/puzzle_bloc.dart';
 
 class PuzzleBottomView extends StatefulWidget {
@@ -15,39 +13,20 @@ class PuzzleBottomView extends StatefulWidget {
 class _PuzzleBottomViewState extends State<PuzzleBottomView> {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/ui-frame-bottom.png'),
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-          child: SizedBox(
-            height: 200,
-            width: context.screenWidth,
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Container(
+        alignment: Alignment.center,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GameButton("20", "Back", onTap: () {
-              print('here');
               Navigator.of(context).pop();
             }),
             GameButton("18", "Restart", onTap: () {
               context.read<PuzzleBloc>().add(InitPuzzle());
               context.read<BallBloc>().add(InitalizeBall(context));
             }),
-            GameButton("15", "Undo", onTap: () {}),
-            GameButton("14", "Hint", onTap: () {}),
-            GameButton("10", "Faster", onTap: () {}),
           ],
-        ).pOnly(top: 20)
-      ],
-    );
+        ));
   }
 }
 

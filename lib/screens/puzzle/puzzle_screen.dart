@@ -25,7 +25,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const PuzzleTopView(),
+          // const PuzzleTopView(),
           Board(
             child: Stack(
               children: const [
