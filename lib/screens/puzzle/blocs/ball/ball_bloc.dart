@@ -181,14 +181,27 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     if (arcMap[st]["end"] == null) {
       if (arcMap[st]["type"] == "V") {
         if (flow.length == initialFlowLength - 1 || flow.isEmpty) {
-          arcMap[st]["end"] =
-              ballY + arcMap[st]["direction"] * blockSize * 0.85 - ballSize / 2;
+          if (arcMap[st]["direction"] == -1) {
+            arcMap[st]["end"] =
+                ballY + arcMap[st]["direction"] * blockSize * 0.70;
+          } else {
+            arcMap[st]["end"] = ballY +
+                arcMap[st]["direction"] * blockSize * 0.85 -
+                ballSize / 2;
+          }
         } else {
           arcMap[st]["end"] = ballY + arcMap[st]["direction"] * blockSize;
         }
         ballY = ballY + arcMap[st]["direction"] * velocity * linearVelocity;
       } else {
-        arcMap[st]["end"] = ballX + arcMap[st]["direction"] * blockSize;
+        if (arcMap[st]["direction"] == -1) {
+          arcMap[st]["end"] =
+              ballX + arcMap[st]["direction"] * blockSize * 0.70;
+        } else {
+          arcMap[st]["end"] =
+              ballX + arcMap[st]["direction"] * blockSize * 0.85 - ballSize / 2;
+        }
+
         ballX = ballX + arcMap[st]["direction"] * velocity * linearVelocity;
       }
     }
