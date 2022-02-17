@@ -32,6 +32,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   String ballState = "";
   double? radians;
   double velocity = 0.05;
+  int initialFlowLength = 0;
   var lastBlock = {"x": 0.0, "y": 0.0};
 
   static var duration = Duration(milliseconds: refreshMiliseconds);
@@ -47,7 +48,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     var puzzleBloc = context.read<PuzzleBloc>();
 
     flow = puzzleBloc.flow;
-
+    initialFlowLength = flow.length;
     boardSize = PuzzleBloc.getBoardSize(context);
     blockSize = boardSize / puzzleBloc.numBlocks;
     ballSize = blockSize * 0.28;
@@ -179,7 +180,12 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     String st = ballState;
     if (arcMap[st]["end"] == null) {
       if (arcMap[st]["type"] == "V") {
-        arcMap[st]["end"] = ballY + arcMap[st]["direction"] * blockSize;
+        if (flow.length == initialFlowLength - 1 || flow.isEmpty) {
+          arcMap[st]["end"] =
+              ballY + arcMap[st]["direction"] * blockSize * 0.85 - ballSize / 2;
+        } else {
+          arcMap[st]["end"] = ballY + arcMap[st]["direction"] * blockSize;
+        }
         ballY = ballY + arcMap[st]["direction"] * velocity * linearVelocity;
       } else {
         arcMap[st]["end"] = ballX + arcMap[st]["direction"] * blockSize;
