@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:collection/collection.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +26,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     String playerLevel =
-        SharedPrefUtils.playerLevel == '' ? '2' : SharedPrefUtils.playerLevel;
+        SharedPrefUtils.playerLevel == '' ? '1' : SharedPrefUtils.playerLevel;
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
 
@@ -57,6 +56,10 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     Direction direction = event.direction;
     int i = event.row;
     int j = event.column;
+    if (!(playingState[i][j] > 14)) {
+      sound.play('audio/immutableTile.mp3', volume: 0.5);
+      return false;
+    }
 
     switch (direction) {
       case Direction.up:
@@ -75,12 +78,24 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     playingState[i][j] = 0;
 
-    sound.play('audio/tile.mp3', volume: 0.5);
+    sound.play('audio/ballTap.mp3', volume: 0.5);
     emit(TileMoved());
 
-    if (const DeepCollectionEquality().equals(playingState, winningState)) {
+    if (checkWin()) {
       BlocProvider.of<BallBloc>(event.context).add(RollBall());
     }
+  }
+
+  checkWin() {
+    for (int i = 0; i < playingState.length; i++) {
+      for (int j = 0; j < playingState[i].length; j++) {
+        if (winningState[i][j] != 0 &&
+            playingState[i][j] != winningState[i][j]) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   static getBoardSize(BuildContext context) {

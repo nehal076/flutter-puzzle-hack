@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class WinPopup {
@@ -14,21 +15,31 @@ class WinPopup {
             children: [
               Container(
                 width: 400,
-                height: 400,
-                padding: const EdgeInsets.all(40),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/end-game-dialog.png',
-                    ),
-                    fit: BoxFit.fill,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Color(0xffEEEEEE),
+                      Color(0xff444542),
+                    ],
                   ),
                 ),
+                padding: const EdgeInsets.all(40),
                 child: IntrinsicHeight(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const HeightBox(220),
+                      SizedBox(
+                        height: 300,
+                        child: Lottie.asset(
+                          'assets/lottie/snoopd.json',
+                          fit: BoxFit.contain,
+                          repeat: true,
+                        ),
+                      ),
+                      const HeightBox(50),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -37,30 +48,21 @@ class WinPopup {
                           Image.asset('assets/images/buttons/tile006.png')
                         ],
                       ),
+                      const HeightBox(8),
+                      const Text(
+                        'Level Complete',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 32, 17, 14),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ],
                   ).pOnly(top: 20),
                 ),
               ),
-              Positioned(
-                top: 15,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/star-small.png'),
-                    Image.asset('assets/images/star-big.png'),
-                    Image.asset('assets/images/star-small.png')
-                  ],
-                ),
-              ),
-              const Positioned(
-                top: 70,
-                child: Text(
-                  'Level Complete',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 32, 17, 14),
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+              Lottie.asset(
+                'assets/lottie/congratulating.json',
+                repeat: false,
               ),
             ],
           ),
