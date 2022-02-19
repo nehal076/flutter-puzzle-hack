@@ -26,7 +26,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     String playerLevel =
-        SharedPrefUtils.playerLevel == '' ? '1' : SharedPrefUtils.playerLevel;
+        SharedPrefUtils.playerLevel == '' ? '2' : SharedPrefUtils.playerLevel;
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
 
@@ -61,22 +61,41 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
       return false;
     }
 
+    bool toMove = false;
+
     switch (direction) {
       case Direction.up:
-        playingState[i - 1][j] = playingState[i][j];
+        if (playingState[i - 1][j] == 0) {
+          toMove = true;
+          playingState[i - 1][j] = playingState[i][j];
+        }
         break;
       case Direction.down:
-        playingState[i + 1][j] = playingState[i][j];
+        if (playingState[i + 1][j] == 0) {
+          toMove = true;
+          playingState[i + 1][j] = playingState[i][j];
+        }
         break;
       case Direction.left:
-        playingState[i][j - 1] = playingState[i][j];
+        if (playingState[i][j - 1] == 0) {
+          toMove = true;
+          playingState[i][j - 1] = playingState[i][j];
+        }
         break;
       case Direction.right:
-        playingState[i][j + 1] = playingState[i][j];
+        if (playingState[i][j + 1] == 0) {
+          toMove = true;
+          playingState[i][j + 1] = playingState[i][j];
+        }
         break;
     }
 
-    playingState[i][j] = 0;
+    if (toMove) {
+      playingState[i][j] = 0;
+    } else {
+      sound.play('audio/immutableTile.mp3', volume: 0.5);
+      return false;
+    }
 
     sound.play('audio/ballTap.mp3', volume: 0.5);
     emit(TileMoved());
