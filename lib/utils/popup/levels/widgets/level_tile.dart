@@ -14,6 +14,7 @@ class LevelTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        Navigator.pop(context);
         Navigator.pushNamed(
           context,
           Screens.puzzle_screen,

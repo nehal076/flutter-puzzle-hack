@@ -50,6 +50,7 @@ class WinPopup {
                           InkWell(
                             onTap: () {
                               Navigator.pop(context);
+                              Navigator.pop(context);
                               Navigator.pushNamed(
                                 context,
                                 Screens.puzzle_screen,
