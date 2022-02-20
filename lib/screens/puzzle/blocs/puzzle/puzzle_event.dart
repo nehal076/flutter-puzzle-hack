@@ -4,7 +4,11 @@ abstract class PuzzleEvent {
   const PuzzleEvent();
 }
 
-class InitPuzzle extends PuzzleEvent {}
+class InitPuzzle extends PuzzleEvent {
+  final int level;
+
+  InitPuzzle(this.level);
+}
 
 class Swipe extends PuzzleEvent {
   final BuildContext context;

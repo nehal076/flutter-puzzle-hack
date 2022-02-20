@@ -35,6 +35,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   double velocity = 0.05;
   int initialFlowLength = 0;
   var lastBlock = {"x": 0.0, "y": 0.0};
+  String level = "1";
 
   static var duration = Duration(milliseconds: refreshMiliseconds);
   Timer timer = Timer(duration, () {});
@@ -53,6 +54,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     boardSize = PuzzleBloc.getBoardSize(context);
     blockSize = boardSize / puzzleBloc.numBlocks;
     ballSize = blockSize * 0.28;
+    level = puzzleBloc.level;
 
     getInitialCoordinates(puzzleBloc);
 
@@ -128,7 +130,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
       var context = navigatorKey.currentContext!;
       final sound = AudioCache();
       sound.play('audio/missionPassed.mp3', volume: 0.5);
-      WinPopup.show(context);
+      WinPopup.show(context, int.parse(level));
     }
 
     if (ballState == "") {

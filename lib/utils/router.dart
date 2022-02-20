@@ -5,6 +5,7 @@ import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/puzzle_screen.dart';
 import 'package:roll_the_ball/screens/start/start_screen.dart';
 import 'package:roll_the_ball/utils/blocs/player/player_bloc.dart';
+import 'package:roll_the_ball/utils/screens.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -23,7 +24,7 @@ class AppRouter {
             child: const StartScreen(),
           ),
         );
-      case 'puzzle_screen':
+      case Screens.puzzle_screen:
         int level = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(

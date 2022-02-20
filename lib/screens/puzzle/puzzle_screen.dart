@@ -16,7 +16,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<PuzzleBloc>().add(InitPuzzle());
+    context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
   }
 
   @override
@@ -34,7 +34,7 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
               ],
             ),
           ),
-          const PuzzleBottomView(),
+          PuzzleBottomView(level: widget.level),
         ],
       ),
     );

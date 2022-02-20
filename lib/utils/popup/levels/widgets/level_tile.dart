@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:roll_the_ball/utils/screens.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class LevelTile extends StatelessWidget {
@@ -15,8 +16,8 @@ class LevelTile extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          'puzzle_screen',
-          arguments: 1,
+          Screens.puzzle_screen,
+          arguments: int.parse(level),
         );
       },
       child: Container(

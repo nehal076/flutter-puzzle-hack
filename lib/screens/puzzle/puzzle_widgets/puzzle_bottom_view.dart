@@ -4,7 +4,11 @@ import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import '../blocs/puzzle/puzzle_bloc.dart';
 
 class PuzzleBottomView extends StatefulWidget {
-  const PuzzleBottomView({Key? key}) : super(key: key);
+  final int level;
+  const PuzzleBottomView({
+    Key? key,
+    required this.level,
+  }) : super(key: key);
 
   @override
   _PuzzleBottomViewState createState() => _PuzzleBottomViewState();
@@ -22,7 +26,7 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
               Navigator.of(context).pop();
             }),
             GameButton("18", "Restart", onTap: () {
-              context.read<PuzzleBloc>().add(InitPuzzle());
+              context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
               context.read<BallBloc>().add(InitalizeBall(context));
             }),
           ],

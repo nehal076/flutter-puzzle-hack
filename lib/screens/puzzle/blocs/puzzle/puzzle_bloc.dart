@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:roll_the_ball/utils/levels_data.dart';
-import 'package:roll_the_ball/utils/shared_prefs.dart';
 
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
@@ -21,14 +20,14 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   int numBlocks = 0;
   List<String> flow = [];
   StageStartPoint? stageStartPoint;
+  String level = "1";
 
   final sound = AudioCache();
 
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
-    String playerLevel =
-        SharedPrefUtils.playerLevel == '' ? '2' : SharedPrefUtils.playerLevel;
+    level = event.level.toString();
 
-    Level player = levelData.firstWhere((e) => '${e.levelNum}' == playerLevel);
+    Level player = levelData.firstWhere((e) => '${e.levelNum}' == level);
 
     List<List<int>> arr = [];
 

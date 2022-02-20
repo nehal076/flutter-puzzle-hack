@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:roll_the_ball/utils/screens.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class WinPopup {
-  static show(BuildContext context, int level) {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Colors.transparent,
-          content: Stack(
+class WinTest extends StatelessWidget {
+  const WinTest({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Puzzle'),
+      ),
+      body: Column(
+        children: [
+          const HeightBox(100),
+          Stack(
             alignment: Alignment.topCenter,
             children: [
               Container(
@@ -47,19 +50,7 @@ class WinPopup {
                         children: [
                           Image.asset('assets/images/buttons/tile008.png'),
                           Image.asset('assets/images/buttons/tile018.png'),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(
-                                context,
-                                Screens.puzzle_screen,
-                                arguments: level + 1,
-                              );
-                            },
-                            child: Image.asset(
-                              'assets/images/buttons/tile006.png',
-                            ),
-                          )
+                          Image.asset('assets/images/buttons/tile006.png')
                         ],
                       ),
                       const HeightBox(8),
@@ -80,8 +71,8 @@ class WinPopup {
               ),
             ],
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }

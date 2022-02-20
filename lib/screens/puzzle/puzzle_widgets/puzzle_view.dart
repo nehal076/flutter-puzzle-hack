@@ -5,7 +5,9 @@ import 'package:roll_the_ball/widgets/swipe_detector.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PuzzleView extends StatefulWidget {
-  const PuzzleView({Key? key}) : super(key: key);
+  const PuzzleView({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _PuzzleViewState createState() => _PuzzleViewState();
