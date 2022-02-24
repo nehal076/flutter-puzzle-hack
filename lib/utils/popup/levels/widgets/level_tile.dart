@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:roll_the_ball/utils/screens.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class LevelTile extends StatelessWidget {
   final String level;
@@ -37,21 +36,16 @@ class LevelTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const HeightBox(8),
             Text(
               level,
               style: TextStyle(
                 color: Colors.brown[700],
                 fontWeight: FontWeight.w700,
+                fontSize: 28,
+                fontFamily: 'Shizuru',
               ),
             ),
-            Text(
-              "00:04",
-              style: TextStyle(
-                color: Colors.brown[700],
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            // Icon(Icons.lock, color: Colors.brown[700])
           ],
         ),
       ),

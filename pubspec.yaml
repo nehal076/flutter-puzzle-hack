@@ -33,3 +33,7 @@ flutter:
     - assets/images/
     - assets/images/tiles/
     - assets/images/buttons/
+  fonts:
+    - family: Shizuru
+      fonts:
+        - asset: fonts/Shizuru/Shizuru-Regular.ttf
