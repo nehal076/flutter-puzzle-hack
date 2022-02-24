@@ -6,6 +6,4 @@ abstract class PuzzleState {
 
 class PuzzleInitial extends PuzzleState {}
 
-class TileMoved extends PuzzleState {
-  TileMoved();
-}
+class TileMoved extends PuzzleState {}

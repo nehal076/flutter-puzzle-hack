@@ -15,34 +15,33 @@ class LevelPopup {
             alignment: Alignment.topCenter,
             children: [
               Container(
-                width: 400,
-                padding: const EdgeInsets.all(40),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(
-                      'assets/images/level-select-dialog.png',
-                    ),
-                    fit: BoxFit.fill,
-                  ),
+                width: context.screenWidth * 0.90,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: const Color(0xff912514),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: GridView.count(
                   crossAxisCount: 4,
                   shrinkWrap: true,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 10,
+                  // padding: const EdgeInsets.all(20),
                   children: List.generate(16, (index) {
                     return LevelTile('${index + 1}');
                   }),
-                ).pOnly(top: 20),
-              ),
-              const Positioned(
-                top: 25,
-                child: Text(
-                  'Level Select',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 32, 17, 14),
-                    fontWeight: FontWeight.w700,
-                  ),
                 ),
               ),
+              // const Positioned(
+              //   top: 25,
+              //   child: Text(
+              //     'Level Select',
+              //     style: TextStyle(
+              //       color: Color.fromARGB(255, 32, 17, 14),
+              //       fontWeight: FontWeight.w700,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         );

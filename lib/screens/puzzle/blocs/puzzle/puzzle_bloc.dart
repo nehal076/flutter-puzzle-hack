@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:roll_the_ball/utils/levels_data.dart';
+import 'package:roll_the_ball/utils/shared_prefs.dart';
+
+import '../timer/timer_bloc.dart';
 
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
@@ -21,11 +24,14 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   List<String> flow = [];
   StageStartPoint? stageStartPoint;
   String level = "1";
+  bool isFirstMove = false;
+  int moveCounter = 0;
 
   final sound = AudioCache();
 
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     level = event.level.toString();
+    SharedPrefUtils.playerLevel = level;
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == level);
 
@@ -52,6 +58,12 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   }
 
   _swipe(Swipe event, Emitter<PuzzleState> emit) {
+    moveCounter++;
+    if (!isFirstMove) {
+      isFirstMove = true;
+      BlocProvider.of<TimerBloc>(event.context).add(TimerStarted());
+    }
+
     Direction direction = event.direction;
     int i = event.row;
     int j = event.column;
@@ -100,6 +112,10 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     emit(TileMoved());
 
     if (checkWin()) {
+      BlocProvider.of<TimerBloc>(event.context).add(
+        TimerReset(moveCounter: moveCounter),
+      );
+      moveCounter = 0;
       BlocProvider.of<BallBloc>(event.context).add(RollBall());
     }
   }

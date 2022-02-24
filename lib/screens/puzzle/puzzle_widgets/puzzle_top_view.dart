@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class PuzzleTopView extends StatefulWidget {
@@ -9,36 +11,28 @@ class PuzzleTopView extends StatefulWidget {
 }
 
 class _PuzzleTopViewState extends State<PuzzleTopView> {
+  String time = '--';
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/images/ui-frame-top.png'),
-              fit: BoxFit.fitWidth,
-            ),
+    return BlocBuilder<TimerBloc, TimerState>(
+      builder: (context, state) {
+        if (state is TimerRunInProgress) {
+          time = state.time;
+        }
+
+        if (state is ResetTimer) {
+          time = '00:00';
+        }
+
+        return Text(
+          time,
+          style: const TextStyle(
+            color: Colors.yellowAccent,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
           ),
-          child: SizedBox(
-            height: 200,
-            width: context.screenWidth,
-          ),
-        ),
-        SizedBox(
-          // width: 200,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Image.asset('assets/images/star-small.png', fit: BoxFit.cover),
-              Image.asset('assets/images/star-big.png', fit: BoxFit.cover),
-              Image.asset('assets/images/star-small.png', fit: BoxFit.cover)
-            ],
-          ).pOnly(top: 20),
-        )
-      ],
-    );
+        );
+      },
+    ).py12();
   }
 }

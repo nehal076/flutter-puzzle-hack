@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
 import 'package:roll_the_ball/utils/screens.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'widgets/win_button.dart';
 
 class WinPopup {
   static show(BuildContext context, int level) {
@@ -41,13 +47,80 @@ class WinPopup {
                           repeat: true,
                         ),
                       ),
-                      const HeightBox(50),
+                      const Text(
+                        'Level Completed !',
+                        style: TextStyle(
+                          color: Color(0xffFFF99E),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const HeightBox(20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Image.asset('assets/images/buttons/tile008.png'),
-                          Image.asset('assets/images/buttons/tile018.png'),
-                          InkWell(
+                          Column(
+                            children: const [
+                              Text(
+                                "Moves",
+                                style: TextStyle(
+                                  color: Color(0xffFFF99E),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Text(
+                                "1",
+                                style: TextStyle(
+                                  color: Color(0xffFFF99E),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: const [
+                              Text(
+                                "Time",
+                                style: TextStyle(
+                                  color: Color(0xffFFF99E),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              Text(
+                                "00:02",
+                                style: TextStyle(
+                                  color: Color(0xffFFF99E),
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const HeightBox(8),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          WinButton(
+                            text: "Levels",
+                            number: "08",
+                            onTap: () {},
+                          ),
+                          WinButton(
+                            text: "Replay",
+                            number: "18",
+                            onTap: () {
+                              Navigator.pop(context);
+                              context.read<PuzzleBloc>().add(InitPuzzle(level));
+                              context
+                                  .read<BallBloc>()
+                                  .add(InitalizeBall(context));
+                              context.read<TimerBloc>().add(TimerStop());
+                            },
+                          ),
+                          WinButton(
+                            text: "Next",
+                            number: "06",
                             onTap: () {
                               Navigator.pop(context);
                               Navigator.pop(context);
@@ -57,19 +130,8 @@ class WinPopup {
                                 arguments: level + 1,
                               );
                             },
-                            child: Image.asset(
-                              'assets/images/buttons/tile006.png',
-                            ),
-                          )
+                          ),
                         ],
-                      ),
-                      const HeightBox(8),
-                      const Text(
-                        'Level Complete',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 32, 17, 14),
-                          fontWeight: FontWeight.w700,
-                        ),
                       ),
                     ],
                   ).pOnly(top: 20),

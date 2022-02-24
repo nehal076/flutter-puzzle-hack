@@ -18,6 +18,7 @@ dependencies:
   shared_preferences: ^2.0.6
   lottie: ^1.2.1
   velocity_x: ^3.3.0
+  flutter_staggered_animations: ^1.0.0
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import '../blocs/puzzle/puzzle_bloc.dart';
+import '../blocs/timer/timer_bloc.dart';
 
 class PuzzleBottomView extends StatefulWidget {
   final int level;
@@ -28,6 +29,7 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
             GameButton("18", "Restart", onTap: () {
               context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
               context.read<BallBloc>().add(InitalizeBall(context));
+              context.read<TimerBloc>().add(TimerStop());
             }),
           ],
         ));

@@ -28,11 +28,11 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   double blockSize = 100;
   double boardSize = 0;
   double ballSize = 0;
-  double linearVelocity = 80;
+  double linearVelocity = 90;
+  double velocity = 0.06;
   static int refreshMiliseconds = 40;
   String ballState = "";
   double? radians;
-  double velocity = 0.05;
   int initialFlowLength = 0;
   var lastBlock = {"x": 0.0, "y": 0.0};
   String level = "1";
