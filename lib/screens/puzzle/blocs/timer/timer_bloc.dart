@@ -26,6 +26,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   }
 
   void _onStarted(TimerStarted event, Emitter<TimerState> emit) {
+    add(TimerTicked());
     timer = Timer.periodic(duration, (_) {
       playTime = playTime + 1;
       add(TimerTicked());
@@ -58,11 +59,12 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   }
 
   void _onTicked(TimerTicked event, Emitter<TimerState> emit) {
-    int hours = playTime ~/ (60 * 60) % 24;
+    // int hours = playTime ~/ (60 * 60) % 24;
     int minutes = (playTime ~/ 60) % 60;
     int seconds = playTime % 60;
 
-    String strHours = hours == 0 ? '' : '${format(hours)}:';
+    // String strHours = hours == 0 ? '' : '${format(hours)}:';
+    String strHours = '';
     String strMinutes = format(minutes);
     String strSeconds = format(seconds);
 

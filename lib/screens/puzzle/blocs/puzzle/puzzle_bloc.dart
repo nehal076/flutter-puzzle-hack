@@ -61,7 +61,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     moveCounter++;
     if (!isFirstMove) {
       isFirstMove = true;
-      BlocProvider.of<TimerBloc>(event.context).add(TimerStarted());
+      // BlocProvider.of<TimerBloc>(event.context).add(TimerStarted());
     }
 
     Direction direction = event.direction;
