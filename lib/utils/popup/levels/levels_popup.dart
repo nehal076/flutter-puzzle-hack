@@ -27,7 +27,7 @@ class LevelPopup {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   // padding: const EdgeInsets.all(20),
-                  children: List.generate(16, (index) {
+                  children: List.generate(8, (index) {
                     return LevelTile('${index + 1}');
                   }),
                 ),

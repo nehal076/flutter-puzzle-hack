@@ -21,7 +21,7 @@ class WinPopup {
             alignment: Alignment.topCenter,
             children: [
               Container(
-                width: 400,
+                width: MediaQuery.of(context).size.width * 0.5,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
@@ -40,7 +40,7 @@ class WinPopup {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 300,
+                        height: MediaQuery.of(context).size.height * 0.35,
                         child: Lottie.asset(
                           'assets/lottie/snoopd.json',
                           fit: BoxFit.contain,

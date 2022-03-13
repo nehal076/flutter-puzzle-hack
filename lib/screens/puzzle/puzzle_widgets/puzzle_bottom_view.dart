@@ -59,20 +59,9 @@ class GameButton extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.05,
-              width: MediaQuery.of(context).size.width * 0.05,
+              height: MediaQuery.of(context).size.height * 0.04,
+              width: MediaQuery.of(context).size.width * 0.04,
               child: SvgPicture.asset('$name.svg'),
-            ),
-            Material(
-              color: Colors.transparent,
-              child: Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Color(0xffFFF99E),
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
             ),
           ],
         ),
