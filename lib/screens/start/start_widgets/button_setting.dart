@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:roll_the_ball/utils/popup/settings/volume.dart';
 
 class ButtonSetting extends StatefulWidget {
   const ButtonSetting({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _ButtonSettingState extends State<ButtonSetting> {
       clipBehavior: Clip.hardEdge,
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(context, 'puzzle_screen');
+          Volume.show(context);
         },
         onHover: (value) {
           setState(() {
@@ -37,8 +38,8 @@ class _ButtonSettingState extends State<ButtonSetting> {
           });
         },
         child: SizedBox(
-          width: ratioSize * 0.20,
-          height: ratioSize * 0.20,
+          width: ratioSize * 0.25,
+          height: ratioSize * 0.25,
           child: isHovered
               ? SvgPicture.asset(
                   'assets/images/btn_setting.svg',

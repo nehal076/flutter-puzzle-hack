@@ -6,6 +6,7 @@ class SharedPrefUtils {
   static const _USER_PREF = "USER_PREF";
 
   static const _PLAYER_LEVEL = "playerLevel";
+  static const _VOLUME = "volume";
 
   static final SharedPrefUtils _instance = SharedPrefUtils._ctor();
 
@@ -90,9 +91,12 @@ class SharedPrefUtils {
   }
 
   static String get playerLevel => getUserStringValue(_PLAYER_LEVEL);
+  static String get volume => getUserStringValue(_VOLUME);
 
   static set playerLevel(String value) =>
       setUserStringValue(_PLAYER_LEVEL, value);
+
+  static set volume(String value) => setUserStringValue(_VOLUME, value);
 }
 
 enum PrefType { APP_PREF, USER_PREF }

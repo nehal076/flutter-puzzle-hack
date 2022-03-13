@@ -14,7 +14,7 @@ class WinPopup {
     showDialog(
       context: context,
       barrierDismissible: true,
-      builder: (_) {
+      builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.transparent,
           content: Stack(
@@ -108,21 +108,6 @@ class WinPopup {
                               LevelPopup.show(context);
                             },
                           ),
-                          // WinButton(
-                          //   text: "Replay",
-                          //   number: "18",
-                          //   onTap: () {
-                          //     context.read<PuzzleBloc>().add(InitPuzzle(level));
-
-                          //     context
-                          //         .read<BallBloc>()
-                          //         .add(InitalizeBall(context));
-
-                          //     context.read<TimerBloc>().add(TimerStop());
-
-                          //     Navigator.pop(context);
-                          //   },
-                          // ),
                           WinButton(
                             text: "Next",
                             number: "06",

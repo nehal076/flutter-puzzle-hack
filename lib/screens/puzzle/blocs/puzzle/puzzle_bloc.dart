@@ -26,12 +26,15 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   String level = "1";
   bool isFirstMove = false;
   int moveCounter = 0;
+  double volume = 1;
 
   final sound = AudioCache();
 
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     level = event.level.toString();
     SharedPrefUtils.playerLevel = level;
+
+    volume = double.parse(SharedPrefUtils.volume) / 100;
 
     Level player = levelData.firstWhere((e) => '${e.levelNum}' == level);
 
@@ -68,7 +71,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     int i = event.row;
     int j = event.column;
     if (!(playingState[i][j] > 14)) {
-      sound.play('audio/immutableTile.mp3', volume: 0.5);
+      sound.play('audio/immutableTile.mp3', volume: volume);
       return false;
     }
 
@@ -104,11 +107,11 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     if (toMove) {
       playingState[i][j] = 0;
     } else {
-      sound.play('audio/immutableTile.mp3', volume: 0.5);
+      sound.play('audio/immutableTile.mp3', volume: volume);
       return false;
     }
 
-    sound.play('audio/ballTap.mp3', volume: 0.5);
+    sound.play('audio/ballTap.mp3', volume: volume);
     emit(TileMoved());
 
     if (checkWin()) {

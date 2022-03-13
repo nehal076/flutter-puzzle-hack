@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/utils/router.dart';
 
-import 'utils/blocs/theme/theme_bloc.dart';
 import 'utils/shared_prefs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefUtils.init();
-  runApp(BlocProvider(
-    create: (context) => ThemeBloc(),
-    child: const MyApp(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -25,6 +20,12 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 class _MyAppState extends State<MyApp> {
   AppRouter router = AppRouter();
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPrefUtils.volume = "100";
+  }
 
   @override
   Widget build(BuildContext context) {

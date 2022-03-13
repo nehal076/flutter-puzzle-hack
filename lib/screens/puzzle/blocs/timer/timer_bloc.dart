@@ -27,6 +27,7 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
 
   void _onStarted(TimerStarted event, Emitter<TimerState> emit) {
     add(TimerTicked());
+    playTime = 0;
     timer = Timer.periodic(duration, (_) {
       playTime = playTime + 1;
       add(TimerTicked());
