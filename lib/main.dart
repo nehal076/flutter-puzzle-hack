@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:roll_the_ball/utils/router.dart';
 
@@ -25,6 +28,10 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     SharedPrefUtils.volume = "100";
+    SharedPrefUtils.playerLevel = "0";
+
+    final userPrefs = SharedPrefUtils.getAllUserPrefs();
+    log(jsonEncode(userPrefs));
   }
 
   @override
