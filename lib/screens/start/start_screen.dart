@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:roll_the_ball/screens/start/start_widgets/background.dart';
 import 'package:roll_the_ball/screens/start/start_widgets/button_play.dart';
+import 'package:roll_the_ball/screens/start/start_widgets/logo.dart';
 
 import 'start_widgets/button_setting.dart';
 
@@ -19,7 +20,7 @@ class _StartScreenState extends State<StartScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: const [
-          SizedBox(height: 300),
+          Logo(),
           ButtonPlay(),
           ButtonSetting(),
         ],

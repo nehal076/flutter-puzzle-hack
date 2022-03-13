@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import '../blocs/puzzle/puzzle_bloc.dart';
 import '../blocs/timer/timer_bloc.dart';
@@ -19,29 +20,31 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        alignment: Alignment.center,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GameButton("20", "Back", onTap: () {
-              Navigator.of(context).pop();
-            }),
-            GameButton("18", "Restart", onTap: () {
-              context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
-              context.read<BallBloc>().add(InitalizeBall(context));
-              context.read<TimerBloc>().add(TimerStop());
-            }),
-          ],
-        ));
+      alignment: Alignment.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          GameButton("assets/images/back", "Back", onTap: () {
+            Navigator.of(context).pop();
+          }),
+          GameButton("assets/images/restart", "Restart", onTap: () {
+            context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
+            context.read<BallBloc>().add(InitalizeBall(context));
+            context.read<TimerBloc>().add(TimerStop());
+            context.read<TimerBloc>().add(TimerStarted());
+          }),
+        ],
+      ),
+    );
   }
 }
 
 class GameButton extends StatelessWidget {
-  final String number;
+  final String name;
   final String text;
   final VoidCallback onTap;
   const GameButton(
-    this.number,
+    this.name,
     this.text, {
     Key? key,
     required this.onTap,
@@ -55,7 +58,11 @@ class GameButton extends StatelessWidget {
         onTap: onTap,
         child: Column(
           children: [
-            Image.asset('assets/images/buttons/tile0$number.png'),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.05,
+              width: MediaQuery.of(context).size.width * 0.05,
+              child: SvgPicture.asset('$name.svg'),
+            ),
             Material(
               color: Colors.transparent,
               child: Text(

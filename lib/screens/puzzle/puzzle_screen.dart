@@ -28,20 +28,22 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
         alignment: Alignment.center,
         children: [
           Background(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const PuzzleTopView(),
-                Board(
-                  child: Stack(
-                    children: const [
-                      PuzzleView(),
-                      BallView(),
-                    ],
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const PuzzleTopView(),
+                  Board(
+                    child: Stack(
+                      children: const [
+                        PuzzleView(),
+                        BallView(),
+                      ],
+                    ),
                   ),
-                ),
-                PuzzleBottomView(level: widget.level),
-              ],
+                  PuzzleBottomView(level: widget.level),
+                ],
+              ),
             ),
           ),
           AnimatedTextKit(

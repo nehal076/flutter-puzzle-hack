@@ -30,6 +30,10 @@ class _BallViewState extends State<BallView> {
           ballX = state.ballX;
           ballY = state.ballY;
         }
+
+        // else {
+        //   BlocProvider.of<BallBloc>(context).add(InitalizeBall(context));
+        // }
         return Ball(x: ballX, y: ballY, ballSize: ballSize);
       },
     );

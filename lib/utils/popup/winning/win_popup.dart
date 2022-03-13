@@ -1,10 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
+import 'package:roll_the_ball/utils/popup/levels/levels_popup.dart';
 import 'package:roll_the_ball/utils/screens.dart';
+import 'package:roll_the_ball/utils/shared_prefs.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'widgets/win_button.dart';
@@ -14,7 +14,7 @@ class WinPopup {
     showDialog(
       context: context,
       barrierDismissible: true,
-      builder: (BuildContext context) {
+      builder: (_) {
         return AlertDialog(
           backgroundColor: Colors.transparent,
           content: Stack(
@@ -60,8 +60,8 @@ class WinPopup {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Column(
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Moves",
                                 style: TextStyle(
                                   color: Color(0xffFFF99E),
@@ -69,8 +69,8 @@ class WinPopup {
                                 ),
                               ),
                               Text(
-                                "1",
-                                style: TextStyle(
+                                getMoves(),
+                                style: const TextStyle(
                                   color: Color(0xffFFF99E),
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -78,8 +78,8 @@ class WinPopup {
                             ],
                           ),
                           Column(
-                            children: const [
-                              Text(
+                            children: [
+                              const Text(
                                 "Time",
                                 style: TextStyle(
                                   color: Color(0xffFFF99E),
@@ -87,8 +87,8 @@ class WinPopup {
                                 ),
                               ),
                               Text(
-                                "00:02",
-                                style: TextStyle(
+                                getTime(),
+                                style: const TextStyle(
                                   color: Color(0xffFFF99E),
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -104,20 +104,25 @@ class WinPopup {
                           WinButton(
                             text: "Levels",
                             number: "08",
-                            onTap: () {},
-                          ),
-                          WinButton(
-                            text: "Replay",
-                            number: "18",
                             onTap: () {
-                              Navigator.pop(context);
-                              context.read<PuzzleBloc>().add(InitPuzzle(level));
-                              context
-                                  .read<BallBloc>()
-                                  .add(InitalizeBall(context));
-                              context.read<TimerBloc>().add(TimerStop());
+                              LevelPopup.show(context);
                             },
                           ),
+                          // WinButton(
+                          //   text: "Replay",
+                          //   number: "18",
+                          //   onTap: () {
+                          //     context.read<PuzzleBloc>().add(InitPuzzle(level));
+
+                          //     context
+                          //         .read<BallBloc>()
+                          //         .add(InitalizeBall(context));
+
+                          //     context.read<TimerBloc>().add(TimerStop());
+
+                          //     Navigator.pop(context);
+                          //   },
+                          // ),
                           WinButton(
                             text: "Next",
                             number: "06",
@@ -137,14 +142,29 @@ class WinPopup {
                   ).pOnly(top: 20),
                 ),
               ),
-              Lottie.asset(
-                'assets/lottie/congratulating.json',
-                repeat: false,
-              ),
+              // Lottie.asset(
+              //   'assets/lottie/congratulating.json',
+              //   repeat: false,
+              // ),
             ],
           ),
         );
       },
     );
+  }
+
+  static getData() {
+    var data = jsonDecode(
+      SharedPrefUtils.getUserStringValue('level${SharedPrefUtils.playerLevel}'),
+    );
+    return data;
+  }
+
+  static getMoves() {
+    return getData()['moves'].toString();
+  }
+
+  static getTime() {
+    return getData()['time'].toString();
   }
 }

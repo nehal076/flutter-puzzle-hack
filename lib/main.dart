@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/utils/router.dart';
 
+import 'utils/blocs/theme/theme_bloc.dart';
 import 'utils/shared_prefs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefUtils.init();
-  runApp(const MyApp());
+  runApp(BlocProvider(
+    create: (context) => ThemeBloc(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
