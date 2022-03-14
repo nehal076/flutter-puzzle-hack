@@ -39,11 +39,12 @@ class WinPopup {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      AspectRatio(
-                        aspectRatio: 1 / 2,
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.35,
                         child: Lottie.asset(
                           'assets/lottie/snoopd.json',
                           fit: BoxFit.contain,
+                          repeat: true,
                         ),
                       ),
                       const Text(
