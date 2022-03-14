@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:roll_the_ball/utils/popup/levels/levels_popup.dart';
@@ -40,10 +41,11 @@ class WinPopup {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 300,
+                        height: MediaQuery.of(context).size.height * 0.35,
                         child: Lottie.asset(
                           'assets/lottie/snoopd.json',
                           fit: BoxFit.contain,
+                          repeat: true,
                         ),
                       ),
                       const Text(

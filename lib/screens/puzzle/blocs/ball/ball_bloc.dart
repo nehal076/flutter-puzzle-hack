@@ -30,7 +30,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   double ballSize = 0;
   double linearVelocity = 90;
   double velocity = 0.06;
-  static int refreshMiliseconds = 40;
+  static int refreshMiliseconds = 20;
   String ballState = "";
   double? radians;
   int initialFlowLength = 0;
