@@ -38,8 +38,8 @@ class _ButtonSettingState extends State<ButtonSetting> {
           });
         },
         child: SizedBox(
-          width: ratioSize * 0.25,
-          height: ratioSize * 0.25,
+          width: ratioSize * 0.20,
+          height: ratioSize * 0.20,
           child: isHovered
               ? SvgPicture.asset(
                   'assets/images/btn_setting.svg',

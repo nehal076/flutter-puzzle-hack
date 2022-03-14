@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -12,7 +13,8 @@ class LevelPopup {
         return AlertDialog(
           backgroundColor: Colors.transparent,
           content: Container(
-            width: context.screenWidth * 0.90,
+            width: kIsWeb ? 400 : context.screenWidth * 0.90,
+            height: kIsWeb ? null : context.screenHeight * 0.90,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: const Color(0xff912514),

@@ -38,8 +38,8 @@ class _ButtonPlayState extends State<ButtonPlay> {
           });
         },
         child: SizedBox(
-          width: ratioSize * 0.25,
-          height: ratioSize * 0.25,
+          width: ratioSize * 0.20,
+          height: ratioSize * 0.20,
           child: isHovered
               ? SvgPicture.asset(
                   'assets/images/btn_play.svg',
