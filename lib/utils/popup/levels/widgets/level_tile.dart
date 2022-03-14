@@ -16,15 +16,19 @@ class LevelTile extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isNextLevel =
         int.parse(SharedPrefUtils.playerLevel) + 1 == int.parse(level);
+    bool isUnlocked =
+        SharedPrefUtils.getUserStringValue("level$level") != "" || isNextLevel;
     return InkWell(
-      onTap: () {
-        Navigator.pop(context);
-        Navigator.pushNamed(
-          context,
-          Screens.puzzle_screen,
-          arguments: int.parse(level),
-        );
-      },
+      onTap: isUnlocked
+          ? () {
+              Navigator.pop(context);
+              Navigator.pushNamed(
+                context,
+                Screens.puzzle_screen,
+                arguments: int.parse(level),
+              );
+            }
+          : null,
       child: Container(
         margin: kIsWeb ? const EdgeInsets.all(10) : null,
         decoration: BoxDecoration(
@@ -41,8 +45,7 @@ class LevelTile extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SharedPrefUtils.getUserStringValue("level$level") != "" ||
-                    isNextLevel
+            isUnlocked
                 ? Column(
                     children: [
                       Text(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../blocs/puzzle/puzzle_bloc.dart';
 import '../blocs/timer/timer_bloc.dart';
 
@@ -58,6 +59,7 @@ class GameButton extends StatelessWidget {
         onTap: onTap,
         child: Column(
           children: [
+            const HeightBox(20),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.04,
               width: MediaQuery.of(context).size.width * 0.04,
