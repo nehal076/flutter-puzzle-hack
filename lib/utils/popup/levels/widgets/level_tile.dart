@@ -58,7 +58,14 @@ class LevelTile extends StatelessWidget {
                         ),
                       ),
                       isNextLevel
-                          ? Container()
+                          ? const Text(
+                            "0",
+                            style: TextStyle(
+                              color: Colors.transparent,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14,
+                            ),
+                          )
                           : Text(
                               getTime(level),
                               style: TextStyle(
@@ -69,7 +76,35 @@ class LevelTile extends StatelessWidget {
                             ),
                     ],
                   )
-                : Icon(Icons.lock, color: Colors.brown[700])
+                : Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            level,
+                            style: const TextStyle(
+                              color: Colors.transparent,
+                              fontWeight: FontWeight.w700,
+                              fontSize: 28,
+                              fontFamily: 'Shizuru',
+                            ),
+                          ),
+                          isNextLevel
+                              ? Container()
+                              : const Text(
+                                  "0",
+                                  style: TextStyle(
+                                    color: Colors.transparent,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                        ],
+                      ),
+                      Icon(Icons.lock, color: Colors.brown[700]),
+                    ],
+                  )
           ],
         ),
       ),

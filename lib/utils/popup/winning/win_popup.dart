@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:roll_the_ball/utils/popup/levels/levels_popup.dart';
@@ -109,19 +107,21 @@ class WinPopup {
                               LevelPopup.show(context);
                             },
                           ),
-                          WinButton(
-                            text: "Next",
-                            number: "06",
-                            onTap: () {
-                              Navigator.pop(context);
-                              Navigator.pop(context);
-                              Navigator.pushNamed(
-                                context,
-                                Screens.puzzle_screen,
-                                arguments: level + 1,
-                              );
-                            },
-                          ),
+                          (level + 1 > 8)
+                              ? Container()
+                              : WinButton(
+                                  text: "Next",
+                                  number: "06",
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                    Navigator.pushNamed(
+                                      context,
+                                      Screens.puzzle_screen,
+                                      arguments: level + 1,
+                                    );
+                                  },
+                                ),
                         ],
                       ),
                     ],
