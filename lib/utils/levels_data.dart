@@ -183,4 +183,83 @@ List<Level> levelData = [
     stageStartPoint:
         const StageStartPoint(x: 2, y: 1, position: Position.right),
   ),
+  Level(
+    levelNum: 9,
+    initialState: [
+      [5, 14, 16, 19],
+      [15, 0, 1, 15],
+      [18, 16, 17, 18],
+      [17, 0, 0, 0],
+    ],
+    winningState: [
+      [5, 14, 16, 19],
+      [17, 18, 1, 15],
+      [0, 0, 17, 18],
+      [0, 0, 0, 0],
+    ],
+    flow: [
+      "L_UD",
+      "C_UR",
+      "C_LU",
+      "C_BR",
+      "L_LR",
+      "C_LB",
+      "L_UD",
+      "C_UL",
+      "C_RU",
+      "L_DU"
+    ],
+    stageStartPoint: const StageStartPoint(x: 0, y: 0, position: Position.up),
+  ),
+  Level(
+    levelNum: 10,
+    initialState: [
+      [0, 0, 0, 0],
+      [0, 8, 18, 19],
+      [0, 20, 10, 16],
+      [0, 17, 3, 0],
+    ],
+    winningState: [
+      [0, 0, 0, 0],
+      [0, 8, 16, 19],
+      [0, 20, 10, 18],
+      [0, 17, 3, 0],
+    ],
+    flow: ["L_LR", "L_LR", "C_LB", "C_UL", "L_RL", "C_RB", "C_UR", "L_LR"],
+    stageStartPoint: const StageStartPoint(x: 1, y: 1, position: Position.left),
+  ),
+  Level(
+    levelNum: 11,
+    initialState: [
+      [0, 0, 0, 0],
+      [0, 16, 1, 0],
+      [0, 18, 17, 19],
+      [8, 20, 16, 18],
+    ],
+    winningState: [
+      [0, 0, 0, 0],
+      [0, 0, 1, 0],
+      [0, 0, 17, 19],
+      [8, 16, 16, 18],
+    ],
+    flow: ["L_LR", "L_LR", "L_LR", "C_LU", "C_BL", "C_RU", "L_DU"],
+    stageStartPoint: const StageStartPoint(x: 0, y: 3, position: Position.left),
+  ),
+  Level(
+    levelNum: 12,
+    initialState: [
+      [0, 0, 0, 0],
+      [0, 21, 15, 0],
+      [19, 20, 1, 15],
+      [6, 17, 18, 0],
+    ],
+    winningState: [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [20, 19, 1, 0],
+      [6, 17, 18, 0],
+    ],
+    flow: ["L_DU", "C_BR", "C_LB", "C_UR", "C_LU", "L_DU"],
+    stageStartPoint: const StageStartPoint(x: 0, y: 3, position: Position.down),
+  ),
 ];

@@ -19,16 +19,25 @@ class LevelTile extends StatelessWidget {
     bool isUnlocked =
         SharedPrefUtils.getUserStringValue("level$level") != "" || isNextLevel;
     return InkWell(
-      onTap: isUnlocked
-          ? () {
-              Navigator.pop(context);
-              Navigator.pushNamed(
-                context,
-                Screens.puzzle_screen,
-                arguments: int.parse(level),
-              );
-            }
-          : null,
+      // onTap: isUnlocked
+      //     ? () {
+      //         Navigator.pop(context);
+      //         Navigator.pushNamed(
+      //           context,
+      //           Screens.puzzle_screen,
+      //           arguments: int.parse(level),
+      //         );
+      //       }
+      //     : null,
+      onTap: () {
+        Navigator.pop(context);
+        Navigator.pushNamed(
+          context,
+          Screens.puzzle_screen,
+          arguments: int.parse(level),
+        );
+      },
+
       child: Container(
         margin: kIsWeb ? const EdgeInsets.all(10) : null,
         decoration: BoxDecoration(
@@ -59,13 +68,13 @@ class LevelTile extends StatelessWidget {
                       ),
                       isNextLevel
                           ? const Text(
-                            "0",
-                            style: TextStyle(
-                              color: Colors.transparent,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 14,
-                            ),
-                          )
+                              "0",
+                              style: TextStyle(
+                                color: Colors.transparent,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 14,
+                              ),
+                            )
                           : Text(
                               getTime(level),
                               style: TextStyle(

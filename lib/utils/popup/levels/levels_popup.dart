@@ -19,7 +19,6 @@ class LevelPopup {
                     ? context.screenWidth * 0.90
                     : 400
                 : context.screenWidth * 0.90,
-            height: kIsWeb ? null : context.screenHeight * 0.90,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: const Color(0xff912514),
@@ -40,7 +39,7 @@ class LevelPopup {
                   crossAxisCount: 4,
                   crossAxisSpacing: context.screenWidth * 0.001,
                   mainAxisSpacing: context.screenWidth * 0.001,
-                  children: List.generate(8, (index) {
+                  children: List.generate(12, (index) {
                     return LevelTile('${index + 1}');
                   }),
                 ),

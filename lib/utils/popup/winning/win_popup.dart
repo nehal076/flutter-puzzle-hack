@@ -107,7 +107,7 @@ class WinPopup {
                               LevelPopup.show(context);
                             },
                           ),
-                          (level + 1 > 8)
+                          (level + 1 > 12)
                               ? Container()
                               : WinButton(
                                   text: "Next",
