@@ -23,6 +23,11 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double _width = MediaQuery.of(context).size.width;
+    final double _height = MediaQuery.of(context).size.height;
+
+    final bool widthLarger = _width > _height;
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
@@ -33,15 +38,26 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const PuzzleTopView(),
-                  Board(
-                    child: Stack(
-                      children: const [
-                        PuzzleView(),
-                        BallView(),
-                      ],
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Board(
+                        child: Stack(
+                          children: const [
+                            PuzzleView(),
+                            BallView(),
+                          ],
+                        ),
+                      ),
+                      widthLarger
+                          ? PuzzleBottomView(level: widget.level)
+                          : Container(),
+                    ],
                   ),
-                  PuzzleBottomView(level: widget.level),
+                  widthLarger
+                      ? Container()
+                      : PuzzleBottomView(level: widget.level),
                 ],
               ),
             ),

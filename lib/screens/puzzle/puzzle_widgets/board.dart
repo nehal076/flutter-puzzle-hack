@@ -22,17 +22,9 @@ class Board extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.90,
               width: MediaQuery.of(context).size.width * 0.90,
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: SvgPicture.asset(
-                  'assets/images/board.svg',
-                  fit: BoxFit.cover,
-                ),
+              child: SvgPicture.asset(
+                'assets/images/board.svg',
+                fit: BoxFit.cover,
               ),
             ),
             child,

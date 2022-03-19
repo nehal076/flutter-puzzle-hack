@@ -19,17 +19,9 @@ class Background extends StatelessWidget {
             SizedBox(
               height: height,
               width: width,
-              child: Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-                clipBehavior: Clip.hardEdge,
-                child: SvgPicture.asset(
-                  'assets/images/board-background.svg',
-                  fit: BoxFit.cover,
-                ),
+              child: SvgPicture.asset(
+                'assets/images/board-background.svg',
+                fit: BoxFit.cover,
               ),
             ),
             Container(

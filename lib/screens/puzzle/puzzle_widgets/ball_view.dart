@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'ball.dart';
 
 class BallView extends StatefulWidget {

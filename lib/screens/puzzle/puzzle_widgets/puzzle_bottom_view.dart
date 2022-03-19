@@ -20,50 +20,80 @@ class PuzzleBottomView extends StatefulWidget {
 class _PuzzleBottomViewState extends State<PuzzleBottomView> {
   @override
   Widget build(BuildContext context) {
+    final double _width = MediaQuery.of(context).size.width;
+    final double _height = MediaQuery.of(context).size.height;
+
+    final bool widthLarger = _width > _height;
+
+    List<Widget> buttons = [
+      GameButton(
+        "assets/images/back",
+        "Back",
+        widthLarger: widthLarger,
+        onTap: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      const WidthBox(8),
+      GameButton(
+        "assets/images/restart",
+        "Restart",
+        widthLarger: widthLarger,
+        onTap: () {
+          context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
+          context.read<BallBloc>().add(InitalizeBall(context));
+          context.read<TimerBloc>().add(TimerStop());
+          context.read<TimerBloc>().add(TimerStarted());
+        },
+      ),
+    ];
+
     return Container(
       alignment: Alignment.center,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GameButton("assets/images/back", "Back", onTap: () {
-            Navigator.of(context).pop();
-          }),
-          GameButton("assets/images/restart", "Restart", onTap: () {
-            context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
-            context.read<BallBloc>().add(InitalizeBall(context));
-            context.read<TimerBloc>().add(TimerStop());
-            context.read<TimerBloc>().add(TimerStarted());
-          }),
-        ],
-      ),
+      child: widthLarger
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: buttons,
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: buttons,
+            ),
     );
   }
 }
 
-class GameButton extends StatelessWidget {
+class GameButton extends StatefulWidget {
   final String name;
   final String text;
   final VoidCallback onTap;
+  final bool widthLarger;
   const GameButton(
     this.name,
     this.text, {
     Key? key,
     required this.onTap,
+    required this.widthLarger,
   }) : super(key: key);
 
+  @override
+  State<GameButton> createState() => _GameButtonState();
+}
+
+class _GameButtonState extends State<GameButton> {
   @override
   Widget build(BuildContext context) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: onTap,
+        onTap: widget.onTap,
         child: Column(
           children: [
             const HeightBox(20),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.04,
-              width: MediaQuery.of(context).size.width * 0.04,
-              child: SvgPicture.asset('$name.svg'),
+              height: MediaQuery.of(context).size.height * 0.1,
+              width: MediaQuery.of(context).size.width * 0.1,
+              child: SvgPicture.asset('${widget.name}.svg'),
             ),
           ],
         ),
