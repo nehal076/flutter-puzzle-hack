@@ -1,6 +1,6 @@
 {
-    "name": "roll_the_ball",
-    "short_name": "roll_the_ball",
+    "name": "way_for_ball",
+    "short_name": "way_for_ball",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

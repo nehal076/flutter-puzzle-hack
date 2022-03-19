@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
-import 'package:roll_the_ball/widgets/slide_animation.dart';
-import 'package:roll_the_ball/widgets/swipe_detector.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
+import 'package:way_for_ball/widgets/slide_animation.dart';
+import 'package:way_for_ball/widgets/swipe_detector.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PuzzleView extends StatefulWidget {

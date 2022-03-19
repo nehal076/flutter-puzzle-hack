@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/utils/screens.dart';
-import 'package:roll_the_ball/utils/shared_prefs.dart';
+import 'package:way_for_ball/utils/screens.dart';
+import 'package:way_for_ball/utils/shared_prefs.dart';
 
 class LevelTile extends StatelessWidget {
   final String level;

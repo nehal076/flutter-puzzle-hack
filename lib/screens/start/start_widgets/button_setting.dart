@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:roll_the_ball/utils/popup/settings/volume.dart';
+import 'package:way_for_ball/utils/popup/settings/volume.dart';
 
 class ButtonSetting extends StatefulWidget {
   const ButtonSetting({Key? key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/utils/popup/levels/widgets/level_tile.dart';
+import 'package:way_for_ball/utils/popup/levels/widgets/level_tile.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class WinTest extends StatelessWidget {

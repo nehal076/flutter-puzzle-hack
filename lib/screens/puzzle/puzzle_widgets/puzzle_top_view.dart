@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class PuzzleTopView extends StatefulWidget {

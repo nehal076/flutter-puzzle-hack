@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/screens/start/start_widgets/background.dart';
-import 'package:roll_the_ball/screens/start/start_widgets/button_play.dart';
-import 'package:roll_the_ball/screens/start/start_widgets/logo.dart';
+import 'package:way_for_ball/screens/start/start_widgets/background.dart';
+import 'package:way_for_ball/screens/start/start_widgets/button_play.dart';
+import 'package:way_for_ball/screens/start/start_widgets/logo.dart';
 
 import 'start_widgets/button_setting.dart';
 

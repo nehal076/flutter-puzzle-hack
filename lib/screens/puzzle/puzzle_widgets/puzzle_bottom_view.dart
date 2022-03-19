@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../blocs/puzzle/puzzle_bloc.dart';
 import '../blocs/timer/timer_bloc.dart';

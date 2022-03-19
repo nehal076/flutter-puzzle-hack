@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/utils/shared_prefs.dart';
+import 'package:way_for_ball/utils/shared_prefs.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class Volume {

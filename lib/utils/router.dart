@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/puzzle_screen.dart';
-import 'package:roll_the_ball/screens/start/start_screen.dart';
-import 'package:roll_the_ball/utils/blocs/player/player_bloc.dart';
-import 'package:roll_the_ball/utils/screens.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
+import 'package:way_for_ball/screens/puzzle/puzzle_screen.dart';
+import 'package:way_for_ball/screens/start/start_screen.dart';
+import 'package:way_for_ball/utils/blocs/player/player_bloc.dart';
+import 'package:way_for_ball/utils/screens.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {

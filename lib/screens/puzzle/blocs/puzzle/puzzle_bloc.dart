@@ -2,9 +2,9 @@ import 'package:audioplayers/audioplayers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
-import 'package:roll_the_ball/utils/levels_data.dart';
-import 'package:roll_the_ball/utils/shared_prefs.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:way_for_ball/utils/levels_data.dart';
+import 'package:way_for_ball/utils/shared_prefs.dart';
 
 import '../timer/timer_bloc.dart';
 

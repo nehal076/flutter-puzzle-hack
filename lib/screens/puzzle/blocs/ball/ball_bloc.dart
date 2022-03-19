@@ -3,10 +3,10 @@ import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roll_the_ball/main.dart';
-import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
-import 'package:roll_the_ball/utils/arc_map.dart';
-import 'package:roll_the_ball/utils/popup/winning/win_popup.dart';
+import 'package:way_for_ball/main.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
+import 'package:way_for_ball/utils/arc_map.dart';
+import 'package:way_for_ball/utils/popup/winning/win_popup.dart';
 
 part 'ball_event.dart';
 part 'ball_state.dart';

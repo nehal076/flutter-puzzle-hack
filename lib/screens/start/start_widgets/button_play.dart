@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:roll_the_ball/utils/popup/levels/levels_popup.dart';
+import 'package:way_for_ball/utils/popup/levels/levels_popup.dart';
 
 class ButtonPlay extends StatefulWidget {
   const ButtonPlay({Key? key}) : super(key: key);

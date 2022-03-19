@@ -1,4 +1,4 @@
-import 'package:roll_the_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 
 class Level {
   final int levelNum;

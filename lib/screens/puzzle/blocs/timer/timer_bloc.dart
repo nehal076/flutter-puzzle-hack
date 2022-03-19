@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:roll_the_ball/utils/shared_prefs.dart';
+import 'package:way_for_ball/utils/shared_prefs.dart';
 part 'timer_event.dart';
 part 'timer_state.dart';
 

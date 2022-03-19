@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:roll_the_ball/utils/popup/levels/levels_popup.dart';
-import 'package:roll_the_ball/utils/screens.dart';
-import 'package:roll_the_ball/utils/shared_prefs.dart';
+import 'package:way_for_ball/utils/popup/levels/levels_popup.dart';
+import 'package:way_for_ball/utils/screens.dart';
+import 'package:way_for_ball/utils/shared_prefs.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import 'widgets/win_button.dart';

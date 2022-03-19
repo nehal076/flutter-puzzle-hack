@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:roll_the_ball/utils/router.dart';
+import 'package:way_for_ball/utils/router.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 import 'utils/shared_prefs.dart';
