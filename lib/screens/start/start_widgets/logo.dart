@@ -16,7 +16,7 @@ class _ButtonPlayState extends State<Logo> {
       color: Colors.transparent,
       clipBehavior: Clip.hardEdge,
       child: SizedBox(
-        width: context.screenWidth * 0.45,
+        width: context.screenWidth * 0.90,
         child: SvgPicture.asset(
           'assets/images/way_for_ball.svg',
           fit: BoxFit.contain,
