@@ -3,12 +3,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:roll_the_ball/utils/router.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 import 'utils/shared_prefs.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedPrefUtils.init();
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
