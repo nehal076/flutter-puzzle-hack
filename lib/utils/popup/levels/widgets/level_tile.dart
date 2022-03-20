@@ -29,15 +29,6 @@ class LevelTile extends StatelessWidget {
               );
             }
           : null,
-      // onTap: () {
-      //   Navigator.pop(context);
-      //   Navigator.pushNamed(
-      //     context,
-      //     Screens.puzzle_screen,
-      //     arguments: int.parse(level),
-      //   );
-      // },
-
       child: Container(
         margin: kIsWeb ? const EdgeInsets.all(10) : null,
         decoration: BoxDecoration(

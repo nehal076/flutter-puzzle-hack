@@ -26,7 +26,7 @@ class Background extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: widthLarger ? width * 0.05 : width * 0.20,
+              top: widthLarger ? width * 0.05 : width * 0.12,
               left: widthLarger ? width * 0.80 : width * .70,
               child: SvgPicture.asset(
                 'assets/images/moon.svg',

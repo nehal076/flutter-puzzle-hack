@@ -59,10 +59,6 @@ class SwipeDetector extends StatelessWidget {
 
         mainVel = 1000 * mainDis / panDurationMiliseconds;
 
-        // if (mainDis < minMainDisplacement) return;
-        // if (crossDis > maxCrossRatio * mainDis) return;
-        // if (mainVel < minVelocity) return;
-
         if (mainDis < minMainDisplacement) {
           debugPrint(
               "SWIPE DEBUG | Displacement too short. Real: $mainDis - Min: $minMainDisplacement");

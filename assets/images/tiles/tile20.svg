@@ -1,12 +1,12 @@
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500">
    <defs>
       <linearGradient id="TrfOgZgDPDzt" x1="0px" x2="500px" y1="0px" y2="500px" gradientUnits="userSpaceOnUse">
-         <stop offset="0" stop-color="#BA4110" />
-         <stop offset="1" stop-color="#D5711F" />
+            <stop offset="0" stop-color="#1e3266" />
+            <stop offset="1" stop-color="#356cb1" />
       </linearGradient>
    </defs>
    <g>
       <path fill="url(#TrfOgZgDPDzt)" stroke="none" paint-order="stroke fill markers" d=" M 10 0 L 490 0 L 490 0 A 10 10 0 0 1 500 10 L 500 490 L 500 490 A 10 10 0 0 1 490 500 L 10 500 L 10 500 A 10 10 0 0 1 0 490 L 0 10 L 0 10.000000000000002 A 10 10 0 0 1 10 0 Z"/>
-      <path fill="none" stroke="#BA4110" paint-order="fill stroke markers" d=" M 250 500.00000000000006 A 250 250 0 0 1 499.99999999999994 250" stroke-miterlimit="10" stroke-width="166.66" stroke-dasharray=""/>
+      <path fill="none" stroke="#182f5d" paint-order="fill stroke markers" d=" M 250 500.00000000000006 A 250 250 0 0 1 499.99999999999994 250" stroke-miterlimit="10" stroke-width="166.66" stroke-dasharray=""/>
    </g>
 </svg>
