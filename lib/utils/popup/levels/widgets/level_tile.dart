@@ -32,7 +32,7 @@ class LevelTile extends StatelessWidget {
       child: Container(
         margin: kIsWeb ? const EdgeInsets.all(10) : null,
         decoration: BoxDecoration(
-          color: const Color(0xffD5711F),
+          color: const Color(0xff356cb1),
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -50,8 +50,8 @@ class LevelTile extends StatelessWidget {
                     children: [
                       Text(
                         level,
-                        style: TextStyle(
-                          color: Colors.brown[700],
+                        style: const TextStyle(
+                          color: Colors.white,
                           fontWeight: FontWeight.w700,
                           fontSize: 28,
                           fontFamily: 'Shizuru',
@@ -68,8 +68,8 @@ class LevelTile extends StatelessWidget {
                             )
                           : Text(
                               getTime(level),
-                              style: TextStyle(
-                                color: Colors.brown[700],
+                              style: const TextStyle(
+                                color: Colors.white,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 14,
                               ),
@@ -102,7 +102,7 @@ class LevelTile extends StatelessWidget {
                                 ),
                         ],
                       ),
-                      Icon(Icons.lock, color: Colors.brown[700]),
+                      const Icon(Icons.lock, color: Colors.white),
                     ],
                   )
           ],

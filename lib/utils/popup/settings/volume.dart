@@ -8,7 +8,7 @@ class Volume {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        backgroundColor: const Color(0xff912514),
+        backgroundColor: const Color(0xff1e3266),
         content: SizedBox(
           width: 100,
           child: Wrap(
@@ -33,7 +33,7 @@ class Volume {
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: const Color(0xffD5711F),
+                  primary: const Color(0xff356cb1),
                 ),
                 child: const Text("OK"),
               )
@@ -63,7 +63,7 @@ class _SoundSliderState extends State<SoundSlider> {
       value: _currentSliderValue,
       max: 100,
       divisions: 5,
-      activeColor: const Color(0xffD5711F),
+      activeColor: const Color(0xff356cb1),
       label: _currentSliderValue.round().toString(),
       onChanged: (double value) {
         setState(() {

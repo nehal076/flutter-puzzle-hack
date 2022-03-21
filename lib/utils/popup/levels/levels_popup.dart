@@ -21,7 +21,7 @@ class LevelPopup {
                 : context.screenWidth * 0.90,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: const Color(0xff912514),
+              color: const Color(0xff1e3266),
               borderRadius: BorderRadius.circular(20),
             ),
             child: Wrap(
