@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Board extends StatelessWidget {
   final Widget child;
@@ -19,12 +18,21 @@ class Board extends StatelessWidget {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            SizedBox(
+            Container(
               height: MediaQuery.of(context).size.height * 0.90,
               width: MediaQuery.of(context).size.width * 0.90,
-              child: SvgPicture.asset(
-                'assets/images/board.svg',
-                fit: BoxFit.cover,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                color: Colors.blue[300],
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Colors.black87,
+                    blurRadius: 10,
+                    spreadRadius: 0,
+                    offset: Offset(0, 2.0),
+                  )
+                ],
               ),
             ),
             child,

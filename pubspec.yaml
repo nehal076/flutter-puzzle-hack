@@ -22,6 +22,7 @@ dependencies:
   animated_text_kit: ^4.2.1
   flutter_staggered_grid_view: ^0.6.1
   url_strategy: ^0.2.0
+  rive: ^0.8.4
 
 dev_dependencies:
   flutter_test:
@@ -33,6 +34,7 @@ flutter:
   assets:
     - assets/audio/
     - assets/lottie/
+    - assets/rive/
     - assets/images/
     - assets/images/tiles/
     - assets/images/buttons/

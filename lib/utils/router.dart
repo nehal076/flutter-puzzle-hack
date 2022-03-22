@@ -4,6 +4,7 @@ import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
 import 'package:way_for_ball/screens/puzzle/puzzle_screen.dart';
+import 'package:way_for_ball/screens/start/bloc/bird_bloc.dart';
 import 'package:way_for_ball/screens/start/start_screen.dart';
 import 'package:way_for_ball/utils/blocs/player/player_bloc.dart';
 import 'package:way_for_ball/utils/screens.dart';
@@ -20,6 +21,9 @@ class AppRouter {
               ),
               BlocProvider(
                 create: (context) => BallBloc(),
+              ),
+              BlocProvider(
+                create: (context) => BirdBloc(),
               ),
             ],
             child: const StartScreen(),

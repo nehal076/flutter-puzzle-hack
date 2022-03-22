@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:way_for_ball/screens/start/bloc/bird_bloc.dart';
 
-class Background extends StatelessWidget {
+import 'bird_container.dart';
+
+class Background extends StatefulWidget {
   final Widget child;
   const Background({Key? key, required this.child}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    final bool widthLarger = width > height;
+  State<Background> createState() => _BackgroundState();
+}
 
+class _BackgroundState extends State<Background> {
+  double width = 0;
+  double height = 0;
+  bool widthLarger = false;
+  double x = 0;
+  double y = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      setState(() {
+        width = MediaQuery.of(context).size.width;
+        height = MediaQuery.of(context).size.height;
+        widthLarger = width > height;
+      });
+
+      BlocProvider.of<BirdBloc>(context).add(InitializeBird(context));
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
       height: height,
       width: width,
@@ -37,11 +63,19 @@ class Background extends StatelessWidget {
             alignment: Alignment.center,
             width: double.infinity,
             height: double.infinity,
-            child: child,
+            child: widget.child,
+          ),
+          BlocBuilder<BirdBloc, BirdState>(
+            builder: (context, state) {
+              if (state is BirdMoving) {
+                x = state.x;
+                y = state.y;
+              }
+              return BirdContainer(x: x, y: y);
+            },
           ),
         ],
       ),
     );
-    // );
   }
 }
