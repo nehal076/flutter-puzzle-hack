@@ -14,12 +14,16 @@ class Bird extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    final bool widthLarger = width > height;
+
     return Positioned(
       top: y,
       left: x,
       child: SizedBox(
-        height: context.screenWidth * 0.2,
-        width: context.screenWidth * 0.2,
+        height: context.screenWidth * (widthLarger ? 0.05 : 0.2),
+        width: context.screenWidth * (widthLarger ? 0.05 : 0.2),
         child: const RiveAnimation.asset('assets/rive/bird.riv'),
       ),
     );

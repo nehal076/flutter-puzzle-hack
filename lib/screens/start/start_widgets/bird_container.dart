@@ -20,6 +20,10 @@ class _BirdContainerState extends State<BirdContainer> {
   }
 
   getBirds(context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    final bool widthLarger = width > height;
+
     List<Widget> birds = [];
     for (var i in List.generate(4, (_) => _)) {
       final random = Random(i);
@@ -27,7 +31,7 @@ class _BirdContainerState extends State<BirdContainer> {
       birds.add(
         Bird(
           x: widget.x * (i + 1),
-          y: widget.y * random.nextDouble(),
+          y: widget.y * ((widthLarger ? 0.2 : 0.5) + random.nextDouble()),
         ),
       );
     }

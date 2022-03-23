@@ -19,7 +19,7 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
   _initializeBird(InitializeBird event, Emitter<BirdState> emit) {
     y = event.context.screenWidth * 0.15;
 
-    Timer.periodic(const Duration(milliseconds: 40), (_) {
+    Timer.periodic(const Duration(milliseconds: 20), (_) {
       if (x > event.context.screenWidth) {
         x = 0;
       } else {
