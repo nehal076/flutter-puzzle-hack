@@ -6,7 +6,6 @@ import 'package:way_for_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
 import 'package:way_for_ball/screens/puzzle/puzzle_screen.dart';
 import 'package:way_for_ball/screens/start/bloc/bird_bloc.dart';
 import 'package:way_for_ball/screens/start/start_screen.dart';
-import 'package:way_for_ball/utils/blocs/player/player_bloc.dart';
 import 'package:way_for_ball/utils/screens.dart';
 
 class AppRouter {
@@ -28,6 +27,7 @@ class AppRouter {
             ],
             child: const StartScreen(),
           ),
+          settings: settings,
         );
       case Screens.puzzle_screen:
         int level = settings.arguments as int;
@@ -41,14 +41,12 @@ class AppRouter {
                 create: (context) => BallBloc(),
               ),
               BlocProvider(
-                create: (context) => PlayerBloc(),
-              ),
-              BlocProvider(
                 create: (context) => TimerBloc(),
               ),
             ],
             child: PuzzleScreen(level: level),
           ),
+          settings: settings,
         );
 
       default:
@@ -59,15 +57,10 @@ class AppRouter {
               BlocProvider(
                 create: (context) => PuzzleBloc(),
               ),
-              BlocProvider(
-                create: (context) => BallBloc(),
-              ),
-              BlocProvider(
-                create: (context) => PlayerBloc(),
-              ),
             ],
             child: PuzzleScreen(level: level),
           ),
+          settings: settings,
         );
     }
   }

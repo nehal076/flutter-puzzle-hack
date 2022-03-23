@@ -102,7 +102,7 @@ class WinPopup {
                         children: [
                           WinButton(
                             text: "Levels",
-                            number: "08",
+                            name: "levels",
                             onTap: () {
                               LevelPopup.show(context);
                             },
@@ -111,7 +111,7 @@ class WinPopup {
                               ? Container()
                               : WinButton(
                                   text: "Next",
-                                  number: "06",
+                                  name: "next",
                                   onTap: () {
                                     Navigator.pop(context);
                                     Navigator.pop(context);

@@ -57,10 +57,7 @@
             stroke-dasharray=""
         />
         <path fill="none" stroke="#444542" paint-order="fill stroke markers" d=" M 250 150 L 250 500" stroke-miterlimit="10" stroke-width="166.66" stroke-dasharray="" />
-        <path fill="url(#c444542)" stroke="none" paint-order="stroke fill markers" d=" M 166.67000000000002 151 A 83.33 83.33 0 0 1 333.33 151" />
+        <path fill="url(#c444542)" stroke="none" paint-order="stroke fill markers" d=" M 166.67000000000002 152 A 83.33 83.33 0 0 1 333.33 152" />
         <path fill="" stroke="none" d="" />
-        <!-- <g transform="translate(320,350) rotate(180,0,0)">
-            <text fill="" stroke="none" font-family="Verdana" font-size="160px" font-style="normal" font-weight="bold"  x="0" y="0" text-anchor="start" dominant-baseline="alphabetic">^</text>
-        </g> -->
     </g>
 </svg>
