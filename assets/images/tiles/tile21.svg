@@ -1,16 +1,1 @@
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500">
-    <defs>
-        <linearGradient id="FPPtQaiZIqbX" x1="0px" x2="500px" y1="0px" y2="500px" gradientUnits="userSpaceOnUse">
-            <stop offset="0" stop-color="#1e3266" />
-            <stop offset="1" stop-color="#356cb1" />
-        </linearGradient>
-    </defs>
-    <g>
-        <path
-            fill="url(#FPPtQaiZIqbX)"
-            stroke="none"
-            paint-order="stroke fill markers"
-            d=" M 10 0 L 490 0 L 490 0 A 10 10 0 0 1 500 10 L 500 490 L 500 490 A 10 10 0 0 1 490 500 L 10 500 L 10 500 A 10 10 0 0 1 0 490 L 0 10 L 0 10.000000000000002 A 10 10 0 0 1 10 0 Z"
-        />
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="500" version="1.1"><defs><linearGradient id="FPPtQaiZIqbX" x1="0" x2="500" y1="0" y2="500" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#1e3266"/><stop offset="1" stop-color="#356cb1"/></linearGradient></defs><g><path fill="url(#FPPtQaiZIqbX)" stroke="none" d="M 10 0 L 490 0 L 490 0 A 10 10 0 0 1 500 10 L 500 490 L 500 490 A 10 10 0 0 1 490 500 L 10 500 L 10 500 A 10 10 0 0 1 0 490 L 0 10 L 0 10.000000000000002 A 10 10 0 0 1 10 0 Z" paint-order="stroke fill markers"/></g></svg>
