@@ -42,3 +42,6 @@ flutter:
     - family: Shizuru
       fonts:
         - asset: fonts/Shizuru/Shizuru-Regular.ttf
+    - family: Cairo
+      fonts:
+        - asset: fonts/Cairo/Cairo-Regular.ttf

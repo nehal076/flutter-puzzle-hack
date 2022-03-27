@@ -32,7 +32,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   _initPuzzle(InitPuzzle event, Emitter<PuzzleState> emit) {
     level = event.level.toString();
-    SharedPrefUtils.playerLevel = level;
 
     volume = double.parse(SharedPrefUtils.volume) / 100;
 
@@ -115,6 +114,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     emit(TileMoved());
 
     if (checkWin()) {
+      SharedPrefUtils.playerLevel = level;
       BlocProvider.of<TimerBloc>(event.context).add(
         TimerReset(moveCounter: moveCounter),
       );

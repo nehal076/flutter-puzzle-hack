@@ -25,12 +25,26 @@ class WinButton extends StatelessWidget {
         onTap: onTap,
         child: Column(
           children: [
-            SizedBox(
-              height: widthLarger ? width * 0.05 : width * 0.1,
-              width: widthLarger ? width * 0.05 : width * 0.1,
-              child: SvgPicture.asset(
-                'assets/images/buttons/$name.svg',
-                fit: BoxFit.cover,
+            Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xff444542),
+                    blurRadius: 10,
+                    spreadRadius: 0,
+                    offset: Offset(0, 0),
+                  )
+                ],
+              ),
+              child: SizedBox(
+                height: widthLarger ? width * 0.04 : width * 0.1,
+                width: widthLarger ? width * 0.04 : width * 0.1,
+                child: SvgPicture.asset(
+                  'assets/images/buttons/$name.svg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Material(
@@ -39,7 +53,7 @@ class WinButton extends StatelessWidget {
                 text,
                 style: const TextStyle(
                   fontSize: 14,
-                  color: Color(0xffFFF99E),
+                  color: Color(0xfffff0f5),
                   fontWeight: FontWeight.w900,
                 ),
               ),

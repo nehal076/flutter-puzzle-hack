@@ -7,6 +7,7 @@ import 'package:way_for_ball/main.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:way_for_ball/utils/arc_map.dart';
 import 'package:way_for_ball/utils/popup/winning/win_popup.dart';
+import 'package:way_for_ball/utils/shared_prefs.dart';
 
 part 'ball_event.dart';
 part 'ball_state.dart';
@@ -36,6 +37,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
   int initialFlowLength = 0;
   var lastBlock = {"x": 0.0, "y": 0.0};
   String level = "1";
+  double volume = 1;
 
   static var duration = Duration(milliseconds: refreshMiliseconds);
   Timer timer = Timer(duration, () {});
@@ -48,6 +50,8 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     var context = event.context;
 
     var puzzleBloc = context.read<PuzzleBloc>();
+
+    volume = double.parse(SharedPrefUtils.volume) / 100;
 
     flow = puzzleBloc.flow;
     initialFlowLength = flow.length;
@@ -129,7 +133,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
       timer.cancel();
       var context = navigatorKey.currentContext!;
       final sound = AudioCache();
-      sound.play('audio/missionPassed.mp3', volume: 0.5);
+      sound.play('audio/missionPassed.mp3', volume: volume);
       WinPopup.show(context, int.parse(level));
     }
 

@@ -10,6 +10,11 @@ import 'widgets/win_button.dart';
 
 class WinPopup {
   static show(BuildContext context, int level) {
+    final double _width = MediaQuery.of(context).size.width;
+    final double _height = MediaQuery.of(context).size.height;
+
+    final bool widthLarger = _width > _height;
+
     showDialog(
       context: context,
       barrierDismissible: true,
@@ -20,7 +25,9 @@ class WinPopup {
             alignment: Alignment.topCenter,
             children: [
               Container(
-                width: MediaQuery.of(context).size.width * 0.5,
+                width: widthLarger
+                    ? MediaQuery.of(context).size.width * 0.5
+                    : MediaQuery.of(context).size.width * 0.7,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
@@ -33,45 +40,43 @@ class WinPopup {
                     ],
                   ),
                 ),
-                padding: const EdgeInsets.all(40),
+                padding: const EdgeInsets.all(20),
                 child: IntrinsicHeight(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.35,
-                        child: Lottie.asset(
-                          'assets/lottie/snoopd.json',
-                          fit: BoxFit.contain,
-                          repeat: true,
-                        ),
-                      ),
                       const Text(
-                        'Level Completed !',
+                        'Level Completed ',
                         style: TextStyle(
-                          color: Color(0xffFFF99E),
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18,
+                          color: Color(0xff055799),
+                          fontWeight: FontWeight.w800,
+                          fontSize: 20,
+                          fontFamily: 'Cairo',
                         ),
-                      ),
+                        textAlign: TextAlign.center,
+                      ).centered(),
                       const HeightBox(20),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: widthLarger
+                            ? MainAxisAlignment.spaceEvenly
+                            : MainAxisAlignment.spaceBetween,
                         children: [
                           Column(
                             children: [
                               const Text(
                                 "Moves",
                                 style: TextStyle(
-                                  color: Color(0xffFFF99E),
+                                  color: Color(0xff346CB1),
                                   fontWeight: FontWeight.w700,
+                                  fontSize: 18,
                                 ),
                               ),
                               Text(
                                 getMoves(),
                                 style: const TextStyle(
-                                  color: Color(0xffFFF99E),
+                                  color: Color(0xff346CB1),
                                   fontWeight: FontWeight.w700,
+                                  fontSize: 18,
                                 ),
                               ),
                             ],
@@ -81,21 +86,32 @@ class WinPopup {
                               const Text(
                                 "Time",
                                 style: TextStyle(
-                                  color: Color(0xffFFF99E),
+                                  color: Color(0xff346CB1),
                                   fontWeight: FontWeight.w700,
+                                  fontSize: 18,
                                 ),
                               ),
                               Text(
                                 getTime(),
                                 style: const TextStyle(
-                                  color: Color(0xffFFF99E),
+                                  color: Color(0xff346CB1),
                                   fontWeight: FontWeight.w700,
+                                  fontSize: 18,
                                 ),
                               ),
                             ],
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.40,
+                        child: Lottie.asset(
+                          'assets/lottie/snoopd.json',
+                          fit: BoxFit.contain,
+                          repeat: true,
+                        ),
+                      ),
+                      const HeightBox(20),
                       const HeightBox(8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -128,10 +144,6 @@ class WinPopup {
                   ).pOnly(top: 20),
                 ),
               ),
-              // Lottie.asset(
-              //   'assets/lottie/congratulating.json',
-              //   repeat: false,
-              // ),
             ],
           ),
         );

@@ -43,7 +43,6 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(primarySwatch: Colors.blue),
       navigatorKey: navigatorKey,
       onGenerateRoute: router.generateRoute,
-      onGenerateTitle: (_) => 'Way For Ball',
     );
   }
 }
