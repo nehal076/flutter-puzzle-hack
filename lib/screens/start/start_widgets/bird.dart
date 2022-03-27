@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class Bird extends StatelessWidget {
   final double x;
@@ -22,8 +21,8 @@ class Bird extends StatelessWidget {
       top: y,
       left: x,
       child: SizedBox(
-        height: context.screenWidth * (widthLarger ? 0.05 : 0.2),
-        width: context.screenWidth * (widthLarger ? 0.05 : 0.2),
+        height: width * (widthLarger ? 0.05 : 0.2),
+        width: width * (widthLarger ? 0.05 : 0.2),
         child: const RiveAnimation.asset('assets/rive/bird.riv'),
       ),
     );

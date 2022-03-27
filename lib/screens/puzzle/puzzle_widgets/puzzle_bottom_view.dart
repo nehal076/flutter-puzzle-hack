@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
-import 'package:velocity_x/velocity_x.dart';
 import '../blocs/puzzle/puzzle_bloc.dart';
 import '../blocs/timer/timer_bloc.dart';
 
@@ -34,7 +33,7 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
           Navigator.of(context).pop();
         },
       ),
-      const WidthBox(8),
+      const SizedBox(width: 8),
       GameButton(
         "assets/images/restart",
         "Restart",
@@ -89,7 +88,7 @@ class _GameButtonState extends State<GameButton> {
         onTap: widget.onTap,
         child: Column(
           children: [
-            const HeightBox(20),
+            const SizedBox(height: 20),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
               width: MediaQuery.of(context).size.width * 0.1,

@@ -4,7 +4,6 @@ import 'package:lottie/lottie.dart';
 import 'package:way_for_ball/utils/popup/levels/levels_popup.dart';
 import 'package:way_for_ball/utils/screens.dart';
 import 'package:way_for_ball/utils/shared_prefs.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'widgets/win_button.dart';
 
@@ -42,106 +41,108 @@ class WinPopup {
                 ),
                 padding: const EdgeInsets.all(20),
                 child: IntrinsicHeight(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Level Completed ',
-                        style: TextStyle(
-                          color: Color(0xff055799),
-                          fontWeight: FontWeight.w800,
-                          fontSize: 20,
-                          fontFamily: 'Cairo',
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'Level Completed ',
+                          style: TextStyle(
+                            color: Color(0xff055799),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 20,
+                            fontFamily: 'Cairo',
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
-                      ).centered(),
-                      const HeightBox(20),
-                      Row(
-                        mainAxisAlignment: widthLarger
-                            ? MainAxisAlignment.spaceEvenly
-                            : MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              const Text(
-                                "Moves",
-                                style: TextStyle(
-                                  color: Color(0xff346CB1),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: widthLarger
+                              ? MainAxisAlignment.spaceEvenly
+                              : MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                const Text(
+                                  "Moves",
+                                  style: TextStyle(
+                                    color: Color(0xff346CB1),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                getMoves(),
-                                style: const TextStyle(
-                                  color: Color(0xff346CB1),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
+                                Text(
+                                  getMoves(),
+                                  style: const TextStyle(
+                                    color: Color(0xff346CB1),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              const Text(
-                                "Time",
-                                style: TextStyle(
-                                  color: Color(0xff346CB1),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                const Text(
+                                  "Time",
+                                  style: TextStyle(
+                                    color: Color(0xff346CB1),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                getTime(),
-                                style: const TextStyle(
-                                  color: Color(0xff346CB1),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18,
+                                Text(
+                                  getTime(),
+                                  style: const TextStyle(
+                                    color: Color(0xff346CB1),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.40,
-                        child: Lottie.asset(
-                          'assets/lottie/snoopd.json',
-                          fit: BoxFit.contain,
-                          repeat: true,
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
-                      const HeightBox(20),
-                      const HeightBox(8),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          WinButton(
-                            text: "Levels",
-                            name: "levels",
-                            onTap: () {
-                              LevelPopup.show(context);
-                            },
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.40,
+                          child: Lottie.asset(
+                            'assets/lottie/snoopd.json',
+                            fit: BoxFit.contain,
+                            repeat: true,
                           ),
-                          (level + 1 > 12)
-                              ? Container()
-                              : WinButton(
-                                  text: "Next",
-                                  name: "next",
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                    Navigator.pushNamed(
-                                      context,
-                                      Screens.puzzle_screen,
-                                      arguments: level + 1,
-                                    );
-                                  },
-                                ),
-                        ],
-                      ),
-                    ],
-                  ).pOnly(top: 20),
+                        ),
+                        const SizedBox(height: 28),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            WinButton(
+                              text: "Levels",
+                              name: "levels",
+                              onTap: () {
+                                LevelPopup.show(context);
+                              },
+                            ),
+                            (level + 1 > 12)
+                                ? Container()
+                                : WinButton(
+                                    text: "Next",
+                                    name: "next",
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                      Navigator.pop(context);
+                                      Navigator.pushNamed(
+                                        context,
+                                        Screens.puzzle_screen,
+                                        arguments: level + 1,
+                                      );
+                                    },
+                                  ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ],

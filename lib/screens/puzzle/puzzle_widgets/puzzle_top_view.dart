@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/timer/timer_bloc.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class PuzzleTopView extends StatefulWidget {
   const PuzzleTopView({Key? key}) : super(key: key);
@@ -24,15 +23,18 @@ class _PuzzleTopViewState extends State<PuzzleTopView> {
           time = '00:00';
         }
 
-        return Text(
-          time,
-          style: const TextStyle(
-            color: Colors.yellowAccent,
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          child: Text(
+            time,
+            style: const TextStyle(
+              color: Colors.yellowAccent,
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+            ),
           ),
         );
       },
-    ).py12();
+    );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:way_for_ball/utils/shared_prefs.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class Volume {
   static show(BuildContext context) {
@@ -26,7 +25,7 @@ class Volume {
                   _currentSliderValue = value;
                 },
               ),
-              const HeightBox(20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   SharedPrefUtils.volume = _currentSliderValue.toString();

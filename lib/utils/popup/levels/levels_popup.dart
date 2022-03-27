@@ -1,12 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'widgets/level_tile.dart';
 
 class LevelPopup {
   static show(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     showDialog(
       context: context,
       barrierDismissible: true,
@@ -15,10 +15,10 @@ class LevelPopup {
           backgroundColor: Colors.transparent,
           content: Container(
             width: kIsWeb
-                ? context.screenWidth < 576
-                    ? context.screenWidth * 0.90
+                ? width < 576
+                    ? width * 0.90
                     : 400
-                : context.screenWidth * 0.90,
+                : width * 0.90,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: const Color(0xff1e3266),
@@ -34,11 +34,11 @@ class LevelPopup {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const HeightBox(20),
+                const SizedBox(height: 20),
                 StaggeredGrid.count(
                   crossAxisCount: 4,
-                  crossAxisSpacing: context.screenWidth * 0.001,
-                  mainAxisSpacing: context.screenWidth * 0.001,
+                  crossAxisSpacing: width * 0.001,
+                  mainAxisSpacing: width * 0.001,
                   children: List.generate(12, (index) {
                     return LevelTile('${index + 1}');
                   }),

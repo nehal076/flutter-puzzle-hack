@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 part 'bird_event.dart';
 part 'bird_state.dart';
@@ -17,10 +16,11 @@ class BirdBloc extends Bloc<BirdEvent, BirdState> {
   double y = 0;
 
   _initializeBird(InitializeBird event, Emitter<BirdState> emit) {
-    y = event.context.screenWidth * 0.15;
+    double width = MediaQuery.of(event.context).size.width;
+    y = width * 0.15;
 
     Timer.periodic(const Duration(milliseconds: 20), (_) {
-      if (x > event.context.screenWidth) {
+      if (x > width) {
         x = 0;
       } else {
         x += 4;
