@@ -19,7 +19,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   List<List<int>> initialState = [];
   List<List<int>> playingState = [];
-  List<List<int>> winningState = [];
+  List<List<List<int>>> winningStates = [];
   int numBlocks = 0;
   List<String> flow = [];
   StageStartPoint? stageStartPoint;
@@ -51,15 +51,16 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     initialState = [...player.initialState];
     playingState = arr;
-    winningState = player.winningState;
+    winningStates = player.winningStates;
     numBlocks = player.initialState[0].length;
     stageStartPoint = player.stageStartPoint;
-    flow = [...player.flow];
+    flow = [...player.flows[0]];
 
     emit(PuzzleInitial());
   }
 
   _swipe(Swipe event, Emitter<PuzzleState> emit) {
+    var ctx = event.context;
     moveCounter++;
     if (!isFirstMove) {
       isFirstMove = true;
@@ -113,7 +114,21 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     sound.play('audio/ballTap.mp3', volume: volume);
     emit(TileMoved());
 
-    if (checkWin()) {
+    bool hasCompleted = false;
+
+    if (winningStates.length > 1) {
+      bool otherPath = checkWin(1);
+      if (otherPath) {
+        Level player = levelData.firstWhere((e) => '${e.levelNum}' == level);
+        flow = [...player.flows[1]];
+        BlocProvider.of<BallBloc>(ctx).add(InitalizeBall(ctx));
+      }
+      hasCompleted = checkWin(0) || otherPath;
+    } else {
+      hasCompleted = checkWin(0);
+    }
+
+    if (hasCompleted) {
       SharedPrefUtils.playerLevel = level;
       BlocProvider.of<TimerBloc>(event.context).add(
         TimerReset(moveCounter: moveCounter),
@@ -123,11 +138,11 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     }
   }
 
-  checkWin() {
+  checkWin(int index) {
     for (int i = 0; i < playingState.length; i++) {
       for (int j = 0; j < playingState[i].length; j++) {
-        if (winningState[i][j] != 0 &&
-            playingState[i][j] != winningState[i][j]) {
+        if (winningStates[index][i][j] != 0 &&
+            playingState[i][j] != winningStates[index][i][j]) {
           return false;
         }
       }
