@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: navigatorKey,
       onGenerateRoute: router.generateRoute,
       onGenerateTitle: (_) => 'Way For Ball',
+      initialRoute: '',
     );
   }
 }

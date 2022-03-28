@@ -25,18 +25,15 @@ class _BackgroundState extends State<Background> {
     super.initState();
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
-      setState(() {
-        width = MediaQuery.of(context).size.width;
-        height = MediaQuery.of(context).size.height;
-        widthLarger = width > height;
-      });
-
       BlocProvider.of<BirdBloc>(context).add(InitializeBird(context));
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
+    widthLarger = width > height;
     return SizedBox(
       height: height,
       width: width,
@@ -47,7 +44,10 @@ class _BackgroundState extends State<Background> {
             width: width,
             child: SvgPicture.asset(
               'assets/images/board-background.svg',
+              height: height,
+              width: width,
               fit: BoxFit.cover,
+              // alignment: Alignment.center,
             ),
           ),
           Positioned(

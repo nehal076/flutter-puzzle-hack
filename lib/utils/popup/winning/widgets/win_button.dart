@@ -27,14 +27,14 @@ class WinButton extends StatelessWidget {
           children: [
             Container(
               clipBehavior: Clip.hardEdge,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xff444542),
-                    blurRadius: 10,
+                    color: const Color(0xff444542),
+                    blurRadius: height * 0.010,
                     spreadRadius: 0,
-                    offset: Offset(0, 0),
+                    offset: const Offset(0, 0),
                   )
                 ],
               ),
@@ -51,9 +51,9 @@ class WinButton extends StatelessWidget {
               color: Colors.transparent,
               child: Text(
                 text,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Color(0xfffff0f5),
+                style: TextStyle(
+                  fontSize: height * 0.014,
+                  color: const Color(0xfffff0f5),
                   fontWeight: FontWeight.w900,
                 ),
               ),

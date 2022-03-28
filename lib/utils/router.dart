@@ -30,7 +30,7 @@ class AppRouter {
           settings: settings,
         );
       case Screens.puzzle_screen:
-        int level = settings.arguments as int;
+        int? level = settings.arguments as int?;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -50,15 +50,20 @@ class AppRouter {
         );
 
       default:
-        int level = settings.arguments as int;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
               BlocProvider(
                 create: (context) => PuzzleBloc(),
               ),
+              BlocProvider(
+                create: (context) => BallBloc(),
+              ),
+              BlocProvider(
+                create: (context) => BirdBloc(),
+              ),
             ],
-            child: PuzzleScreen(level: level),
+            child: const StartScreen(),
           ),
           settings: settings,
         );
