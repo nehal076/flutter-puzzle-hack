@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
@@ -115,12 +114,19 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     emit(TileMoved());
 
     bool hasCompleted = false;
+    int pathWay = 0;
 
     if (winningStates.length > 1) {
-      bool otherPath = checkWin(1);
+      for (int i = 1; i < winningStates.length; i++) {
+        if (checkWin(i)) {
+          pathWay = i;
+        }
+      }
+
+      bool otherPath = checkWin(pathWay);
       if (otherPath) {
         Level player = levelData.firstWhere((e) => '${e.levelNum}' == level);
-        flow = [...player.flows[1]];
+        flow = [...player.flows[pathWay]];
         BlocProvider.of<BallBloc>(ctx).add(InitalizeBall(ctx));
       }
       hasCompleted = checkWin(0) || otherPath;
