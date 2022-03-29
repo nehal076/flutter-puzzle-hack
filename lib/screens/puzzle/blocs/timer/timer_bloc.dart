@@ -35,7 +35,6 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   }
 
   void _onReset(TimerReset event, Emitter<TimerState> emit) {
-    print(SharedPrefUtils.playerLevel);
     var dataMap = {
       "moves": event.moveCounter,
       "time": time,
@@ -45,8 +44,6 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
 
     SharedPrefUtils.setUserStringValue(
         "level${SharedPrefUtils.playerLevel}", data);
-    print(SharedPrefUtils.getUserStringValue(
-        "level${SharedPrefUtils.playerLevel}"));
 
     timer.cancel();
 

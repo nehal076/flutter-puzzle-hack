@@ -22,7 +22,6 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
   @override
   void initState() {
     super.initState();
-    print(playerLevel);
     context.read<PuzzleBloc>().add(InitPuzzle(widget.level ?? playerLevel));
   }
 
