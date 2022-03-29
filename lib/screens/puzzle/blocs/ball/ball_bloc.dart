@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:way_for_ball/main.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:way_for_ball/utils/arc_map.dart';
+import 'package:way_for_ball/utils/levels_data.dart';
 import 'package:way_for_ball/utils/popup/winning/win_popup.dart';
 import 'package:way_for_ball/utils/shared_prefs.dart';
 
@@ -60,35 +61,37 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     ballSize = blockSize * 0.28;
     level = puzzleBloc.level;
 
-    getInitialCoordinates(puzzleBloc);
+    if (state is! BallRollComplete) {
+      getCoordinates(puzzleBloc.stageStartPoint!);
+      emit(BallInitial());
+    } else {
+      getCoordinates(puzzleBloc.stageEndPoint!);
+    }
 
     ballX = initialX;
     ballY = initialY;
-
-    emit(BallInitial());
   }
 
-  getInitialCoordinates(PuzzleBloc puzzleBloc) {
-    var start = puzzleBloc.stageStartPoint!;
-    var position = start.position;
+  getCoordinates(StagePoint point) {
+    var position = point.position;
     switch (position) {
       case Position.up:
-        initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y + blockSize * .15;
+        initialX = blockSize * point.x + blockSize / 2 - ballSize / 2;
+        initialY = blockSize * point.y + blockSize * .15;
         break;
 
       case Position.down:
-        initialX = blockSize * start.x + blockSize / 2 - ballSize / 2;
-        initialY = blockSize * start.y - ballSize + blockSize * .85;
+        initialX = blockSize * point.x + blockSize / 2 - ballSize / 2;
+        initialY = blockSize * point.y - ballSize + blockSize * .85;
         break;
 
       case Position.right:
-        initialX = blockSize * start.x - ballSize + blockSize * .85;
-        initialY = blockSize * start.y + blockSize / 2 - ballSize / 2;
+        initialX = blockSize * point.x - ballSize + blockSize * .85;
+        initialY = blockSize * point.y + blockSize / 2 - ballSize / 2;
         break;
       case Position.left:
-        initialX = blockSize * start.x + blockSize * .15;
-        initialY = blockSize * start.y + blockSize / 2 - ballSize / 2;
+        initialX = blockSize * point.x + blockSize * .15;
+        initialY = blockSize * point.y + blockSize / 2 - ballSize / 2;
         break;
     }
   }

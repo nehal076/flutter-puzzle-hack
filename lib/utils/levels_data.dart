@@ -5,7 +5,8 @@ class Level {
   List<List<int>> initialState;
   final List<List<List<int>>> winningStates;
   final List<List<String>> flows;
-  final StageStartPoint stageStartPoint;
+  final StagePoint stageStartPoint;
+  final StagePoint stageEndPoint;
 
   Level({
     required this.levelNum,
@@ -13,15 +14,16 @@ class Level {
     required this.winningStates,
     required this.flows,
     required this.stageStartPoint,
+    required this.stageEndPoint,
   });
 }
 
-class StageStartPoint {
+class StagePoint {
   final int x;
   final int y;
   final Position position;
 
-  const StageStartPoint({
+  const StagePoint({
     required this.x,
     required this.y,
     required this.position,
@@ -48,11 +50,8 @@ List<Level> levelData = [
     flows: [
       ["L_UD", "C_UR", "C_LU", "C_BR", "C_LB", "L_UD"]
     ],
-    stageStartPoint: const StageStartPoint(
-      x: 1,
-      y: 1,
-      position: Position.up,
-    ),
+    stageStartPoint: const StagePoint(x: 1, y: 1, position: Position.up),
+    stageEndPoint: const StagePoint(x: 3, y: 2, position: Position.down),
   ),
   Level(
     levelNum: 2,
@@ -73,7 +72,8 @@ List<Level> levelData = [
     flows: [
       ["L_DU", "C_BL", "C_RB", "L_UD", "C_UR", "L_LR", "C_LU", "L_DU"]
     ],
-    stageStartPoint: const StageStartPoint(x: 1, y: 1, position: Position.down),
+    stageStartPoint: const StagePoint(x: 1, y: 1, position: Position.down),
+    stageEndPoint: const StagePoint(x: 2, y: 1, position: Position.up),
   ),
   Level(
     levelNum: 3,
@@ -94,7 +94,8 @@ List<Level> levelData = [
     flows: [
       ["L_UD", "C_UL", "L_RL", "C_RB", "L_UD", "C_UL", "L_RL"]
     ],
-    stageStartPoint: const StageStartPoint(x: 3, y: 0, position: Position.up),
+    stageStartPoint: const StagePoint(x: 3, y: 0, position: Position.up),
+    stageEndPoint: const StagePoint(x: 0, y: 3, position: Position.left),
   ),
   Level(
     levelNum: 4,
@@ -122,7 +123,8 @@ List<Level> levelData = [
       ["L_DU", "C_BL", "C_RB", "L_UD", "C_UR", "L_LR", "C_LU", "L_DU"],
       ["L_DU", "C_BR", "L_LR", "C_LB", "L_UD", "C_UL", "C_RU", "L_DU"],
     ],
-    stageStartPoint: const StageStartPoint(x: 1, y: 1, position: Position.down),
+    stageStartPoint: const StagePoint(x: 1, y: 1, position: Position.down),
+    stageEndPoint: const StagePoint(x: 2, y: 1, position: Position.up),
   ),
   Level(
     levelNum: 5,
@@ -157,8 +159,8 @@ List<Level> levelData = [
       ["L_RL", "C_RB", "L_UD", "L_UD", "C_UL", "L_RL", "C_RU", "C_BR", "L_LR"],
       ["L_RL", "L_RL", "C_RB", "C_UL", "C_RB", "C_UR", "L_LR"],
     ],
-    stageStartPoint:
-        const StageStartPoint(x: 3, y: 0, position: Position.right),
+    stageStartPoint: const StagePoint(x: 3, y: 0, position: Position.right),
+    stageEndPoint: const StagePoint(x: 1, y: 2, position: Position.right),
   ),
   Level(
     levelNum: 6,
@@ -190,7 +192,8 @@ List<Level> levelData = [
         "L_LR"
       ]
     ],
-    stageStartPoint: const StageStartPoint(x: 0, y: 3, position: Position.left),
+    stageStartPoint: const StagePoint(x: 0, y: 3, position: Position.left),
+    stageEndPoint: const StagePoint(x: 3, y: 3, position: Position.right),
   ),
   Level(
     levelNum: 7,
@@ -211,8 +214,8 @@ List<Level> levelData = [
     flows: [
       ["L_RL", "C_RB", "C_UR", "L_LR", "L_LR", "C_LU", "C_BL", "L_RL"]
     ],
-    stageStartPoint:
-        const StageStartPoint(x: 1, y: 1, position: Position.right),
+    stageStartPoint: const StagePoint(x: 1, y: 1, position: Position.right),
+    stageEndPoint: const StagePoint(x: 2, y: 1, position: Position.left),
   ),
   Level(
     levelNum: 8,
@@ -233,8 +236,8 @@ List<Level> levelData = [
     flows: [
       ["L_RL", "C_RB", "L_UD", "C_UR", "L_LR", "C_LU", "L_DU"]
     ],
-    stageStartPoint:
-        const StageStartPoint(x: 2, y: 1, position: Position.right),
+    stageStartPoint: const StagePoint(x: 2, y: 1, position: Position.right),
+    stageEndPoint: const StagePoint(x: 3, y: 2, position: Position.up),
   ),
   Level(
     levelNum: 9,
@@ -291,7 +294,8 @@ List<Level> levelData = [
         "L_DU"
       ]
     ],
-    stageStartPoint: const StageStartPoint(x: 0, y: 0, position: Position.up),
+    stageStartPoint: const StagePoint(x: 0, y: 0, position: Position.up),
+    stageEndPoint: const StagePoint(x: 2, y: 1, position: Position.up),
   ),
   Level(
     levelNum: 10,
@@ -312,7 +316,8 @@ List<Level> levelData = [
     flows: [
       ["L_LR", "L_LR", "C_LB", "C_UL", "L_RL", "C_RB", "C_UR", "L_LR"]
     ],
-    stageStartPoint: const StageStartPoint(x: 1, y: 1, position: Position.left),
+    stageStartPoint: const StagePoint(x: 1, y: 1, position: Position.left),
+    stageEndPoint: const StagePoint(x: 2, y: 3, position: Position.right),
   ),
   Level(
     levelNum: 11,
@@ -333,7 +338,8 @@ List<Level> levelData = [
     flows: [
       ["L_LR", "L_LR", "L_LR", "C_LU", "C_BL", "C_RU", "L_DU"]
     ],
-    stageStartPoint: const StageStartPoint(x: 0, y: 3, position: Position.left),
+    stageStartPoint: const StagePoint(x: 0, y: 3, position: Position.left),
+    stageEndPoint: const StagePoint(x: 2, y: 1, position: Position.up),
   ),
   Level(
     levelNum: 12,
@@ -354,6 +360,7 @@ List<Level> levelData = [
     flows: [
       ["L_DU", "C_BR", "C_LB", "C_UR", "C_LU", "L_DU"]
     ],
-    stageStartPoint: const StageStartPoint(x: 0, y: 3, position: Position.down),
+    stageStartPoint: const StagePoint(x: 0, y: 3, position: Position.down),
+    stageEndPoint: const StagePoint(x: 2, y: 2, position: Position.up),
   ),
 ];

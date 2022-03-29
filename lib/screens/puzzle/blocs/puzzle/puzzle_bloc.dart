@@ -21,7 +21,8 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   List<List<List<int>>> winningStates = [];
   int numBlocks = 0;
   List<String> flow = [];
-  StageStartPoint? stageStartPoint;
+  StagePoint? stageStartPoint;
+  StagePoint? stageEndPoint;
   String level = "1";
   bool isFirstMove = false;
   int moveCounter = 0;
@@ -53,6 +54,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     winningStates = player.winningStates;
     numBlocks = player.initialState[0].length;
     stageStartPoint = player.stageStartPoint;
+    stageEndPoint = player.stageEndPoint;
     flow = [...player.flows[0]];
 
     emit(PuzzleInitial());

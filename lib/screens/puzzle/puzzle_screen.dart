@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
 import 'package:way_for_ball/utils/shared_prefs.dart';
 
 import 'blocs/puzzle/puzzle_bloc.dart';
@@ -67,33 +68,47 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
               ),
             ),
           ),
-          AnimatedTextKit(
-            totalRepeatCount: 1,
-            onFinished: () {
-              BlocProvider.of<TimerBloc>(context).add(TimerStarted());
-              setState(() {
-                disableTiles = false;
-              });
+          BlocListener<BallBloc, BallState>(
+            listener: (context, state) {
+              if (state is BallInitial) {
+                setState(() {
+                  disableTiles = false;
+                });
+              }
+              if (state is BallRollComplete) {
+                setState(() {
+                  disableTiles = true;
+                });
+              }
             },
-            pause: const Duration(milliseconds: 4),
-            animatedTexts: [
-              ScaleAnimatedText(
-                'Ready?',
-                textStyle: const TextStyle(
-                  fontSize: 70.0,
-                  color: Colors.white,
+            child: AnimatedTextKit(
+              totalRepeatCount: 1,
+              onFinished: () {
+                BlocProvider.of<TimerBloc>(context).add(TimerStarted());
+                setState(() {
+                  disableTiles = false;
+                });
+              },
+              pause: const Duration(milliseconds: 4),
+              animatedTexts: [
+                ScaleAnimatedText(
+                  'Ready?',
+                  textStyle: const TextStyle(
+                    fontSize: 70.0,
+                    color: Colors.white,
+                  ),
+                  duration: const Duration(seconds: 1),
                 ),
-                duration: const Duration(seconds: 1),
-              ),
-              ScaleAnimatedText(
-                'GO!!',
-                textStyle: const TextStyle(
-                  fontSize: 70.0,
-                  color: Colors.white,
+                ScaleAnimatedText(
+                  'GO!!',
+                  textStyle: const TextStyle(
+                    fontSize: 70.0,
+                    color: Colors.white,
+                  ),
+                  duration: const Duration(seconds: 1),
                 ),
-                duration: const Duration(seconds: 1),
-              ),
-            ],
+              ],
+            ),
           ),
           disableTiles
               ? Container(
