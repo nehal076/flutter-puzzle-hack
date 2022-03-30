@@ -40,6 +40,7 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
         widthLarger: widthLarger,
         onTap: () {
           context.read<PuzzleBloc>().add(InitPuzzle(widget.level));
+          context.read<BallBloc>().add(BallInitalize());
           context.read<BallBloc>().add(InitalizeBall(context));
           context.read<TimerBloc>().add(TimerStop());
           context.read<TimerBloc>().add(TimerStarted());

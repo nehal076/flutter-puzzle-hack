@@ -20,6 +20,7 @@ class BallBloc extends Bloc<BallEvent, BallState> {
     on<UpdateBall>(_updateBall);
     on<UpdateLinearState>(_updateLinearState);
     on<UpdateCurveState>(_updateCurveState);
+    on<BallInitalize>(_ballInitalize);
   }
 
   bool gameHasStarted = false;
@@ -70,6 +71,10 @@ class BallBloc extends Bloc<BallEvent, BallState> {
 
     ballX = initialX;
     ballY = initialY;
+  }
+
+  _ballInitalize(BallInitalize event, Emitter<BallState> emit) {
+    emit(BallInitial());
   }
 
   getCoordinates(StagePoint point) {
