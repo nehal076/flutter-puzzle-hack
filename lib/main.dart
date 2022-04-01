@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    SharedPrefUtils.volume = "100";
+    SharedPrefUtils.volume = "66";
     SharedPrefUtils.playerLevel = "0";
 
     final userPrefs = SharedPrefUtils.getAllUserPrefs();

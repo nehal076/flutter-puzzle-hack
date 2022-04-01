@@ -333,10 +333,17 @@ List<Level> levelData = [
         [0, 0, 1, 0],
         [0, 0, 17, 19],
         [8, 16, 16, 18],
+      ],
+      [
+        [0, 0, 0, 0],
+        [0, 0, 1, 0],
+        [0, 20, 18, 0],
+        [8, 18, 0, 0],
       ]
     ],
     flows: [
-      ["L_LR", "L_LR", "L_LR", "C_LU", "C_BL", "C_RU", "L_DU"]
+      ["L_LR", "L_LR", "L_LR", "C_LU", "C_BL", "C_RU", "L_DU"],
+      ["L_LR", "C_LU", "C_BR", "C_LU", "L_DU"],
     ],
     stageStartPoint: const StagePoint(x: 0, y: 3, position: Position.left),
     stageEndPoint: const StagePoint(x: 2, y: 1, position: Position.up),
@@ -355,10 +362,17 @@ List<Level> levelData = [
         [0, 0, 0, 0],
         [20, 19, 1, 0],
         [6, 17, 18, 0],
+      ],
+      [
+        [0, 0, 0, 0],
+        [20, 19, 0, 0],
+        [15, 15, 1, 0],
+        [6, 17, 18, 0],
       ]
     ],
     flows: [
-      ["L_DU", "C_BR", "C_LB", "C_UR", "C_LU", "L_DU"]
+      ["L_DU", "C_BR", "C_LB", "C_UR", "C_LU", "L_DU"],
+      ["L_DU", "L_DU", "C_BR", "C_LB", "L_UD", "C_UR", "C_LU", "L_DU"],
     ],
     stageStartPoint: const StagePoint(x: 0, y: 3, position: Position.down),
     stageEndPoint: const StagePoint(x: 2, y: 2, position: Position.up),

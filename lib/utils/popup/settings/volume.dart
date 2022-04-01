@@ -54,7 +54,7 @@ class SoundSlider extends StatefulWidget {
 }
 
 class _SoundSliderState extends State<SoundSlider> {
-  double _currentSliderValue = 100;
+  double _currentSliderValue = double.parse(SharedPrefUtils.volume);
 
   @override
   Widget build(BuildContext context) {

@@ -26,7 +26,7 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
 
     List<Widget> buttons = [
       GameButton(
-        "assets/images/back",
+        "back",
         "Back",
         widthLarger: widthLarger,
         onTap: () {
@@ -35,7 +35,7 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
       ),
       const SizedBox(width: 8),
       GameButton(
-        "assets/images/restart",
+        "restart",
         "Restart",
         widthLarger: widthLarger,
         onTap: () {
@@ -81,23 +81,38 @@ class GameButton extends StatefulWidget {
 }
 
 class _GameButtonState extends State<GameButton> {
+  bool disableButton = false;
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: widget.onTap,
-        child: Column(
-          children: [
-            const SizedBox(height: 20),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
-              width: MediaQuery.of(context).size.width * 0.1,
-              child: SvgPicture.asset('${widget.name}.svg'),
+    return BlocBuilder<BallBloc, BallState>(
+      builder: (context, state) {
+        if (state is BallRolling) {
+          disableButton = true;
+        } else {
+          disableButton = false;
+        }
+        return Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: disableButton ? null : widget.onTap,
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.1,
+                  child: disableButton
+                      ? SvgPicture.asset(
+                          'assets/images/disabled_${widget.name}.svg',
+                        )
+                      : SvgPicture.asset('assets/images/${widget.name}.svg'),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
