@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/puzzle/puzzle_bloc.dart';
 import 'package:way_for_ball/widgets/slide_animation.dart';
 import 'package:way_for_ball/widgets/swipe_detector.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PuzzleView extends StatefulWidget {
   const PuzzleView({
@@ -14,8 +14,7 @@ class PuzzleView extends StatefulWidget {
   _PuzzleViewState createState() => _PuzzleViewState();
 }
 
-class _PuzzleViewState extends State<PuzzleView>
-    with SingleTickerProviderStateMixin {
+class _PuzzleViewState extends State<PuzzleView> {
   List<List<int>> level = [];
 
   int levelLength = 0;

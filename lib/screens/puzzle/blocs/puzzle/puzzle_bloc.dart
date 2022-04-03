@@ -62,7 +62,6 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   _swipe(Swipe event, Emitter<PuzzleState> emit) {
     var ctx = event.context;
-    moveCounter++;
     if (!isFirstMove) {
       isFirstMove = true;
       // BlocProvider.of<TimerBloc>(event.context).add(TimerStarted());
@@ -78,6 +77,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
     bool toMove = false;
 
+    moveCounter++;
     switch (direction) {
       case Direction.up:
         if (playingState[i - 1][j] == 0) {

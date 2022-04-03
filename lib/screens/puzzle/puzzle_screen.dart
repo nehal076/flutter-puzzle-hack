@@ -68,55 +68,58 @@ class _PuzzleScreenState extends State<PuzzleScreen> {
               ),
             ),
           ),
-          BlocListener<BallBloc, BallState>(
-            listener: (context, state) {
+          BlocBuilder<BallBloc, BallState>(
+            builder: (context, state) {
               if (state is BallInitial) {
-                setState(() {
-                  disableTiles = false;
-                });
+                disableTiles = false;
+              }
+              if (state is BallRolling) {
+                disableTiles = true;
               }
               if (state is BallRollComplete) {
-                setState(() {
-                  disableTiles = true;
-                });
+                disableTiles = true;
               }
+              return Stack(
+                children: [
+                  AnimatedTextKit(
+                    totalRepeatCount: 1,
+                    onFinished: () {
+                      BlocProvider.of<TimerBloc>(context).add(TimerStarted());
+                      setState(() {
+                        disableTiles = false;
+                      });
+                    },
+                    pause: const Duration(milliseconds: 4),
+                    animatedTexts: [
+                      ScaleAnimatedText(
+                        'Ready?',
+                        textStyle: const TextStyle(
+                          fontSize: 70.0,
+                          color: Colors.white,
+                        ),
+                        duration: const Duration(seconds: 1),
+                      ),
+                      ScaleAnimatedText(
+                        'GO!!',
+                        textStyle: const TextStyle(
+                          fontSize: 70.0,
+                          color: Colors.white,
+                        ),
+                        duration: const Duration(seconds: 1),
+                      ),
+                    ],
+                  ),
+                  disableTiles
+                      ? Container(
+                          width: _boardSize,
+                          height: _boardSize,
+                          color: Colors.transparent,
+                        )
+                      : const SizedBox.shrink()
+                ],
+              );
             },
-            child: AnimatedTextKit(
-              totalRepeatCount: 1,
-              onFinished: () {
-                BlocProvider.of<TimerBloc>(context).add(TimerStarted());
-                setState(() {
-                  disableTiles = false;
-                });
-              },
-              pause: const Duration(milliseconds: 4),
-              animatedTexts: [
-                ScaleAnimatedText(
-                  'Ready?',
-                  textStyle: const TextStyle(
-                    fontSize: 70.0,
-                    color: Colors.white,
-                  ),
-                  duration: const Duration(seconds: 1),
-                ),
-                ScaleAnimatedText(
-                  'GO!!',
-                  textStyle: const TextStyle(
-                    fontSize: 70.0,
-                    color: Colors.white,
-                  ),
-                  duration: const Duration(seconds: 1),
-                ),
-              ],
-            ),
-          ),
-          disableTiles
-              ? Container(
-                  width: _boardSize,
-                  height: _boardSize,
-                  color: Colors.transparent,
-                )
-              : const SizedBox.shrink()
+          )
         ],
       ),
     );

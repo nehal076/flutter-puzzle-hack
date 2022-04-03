@@ -114,7 +114,9 @@ class WinPopup {
                           ),
                           SizedBox(height: _height * 0.028),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            mainAxisAlignment: (level + 1 > 12)
+                                ? MainAxisAlignment.center
+                                : MainAxisAlignment.spaceEvenly,
                             children: [
                               WinButton(
                                 text: "Levels",
