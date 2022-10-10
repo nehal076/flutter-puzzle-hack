@@ -24,7 +24,7 @@ class _BackgroundState extends State<Background> {
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       BlocProvider.of<BirdBloc>(context).add(InitializeBird(context));
     });
   }

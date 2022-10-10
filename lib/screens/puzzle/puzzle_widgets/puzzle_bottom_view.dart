@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:way_for_ball/screens/puzzle/blocs/ball/ball_bloc.dart';
+import 'package:way_for_ball/utils/popup/settings/volume.dart';
 import '../blocs/puzzle/puzzle_bloc.dart';
 import '../blocs/timer/timer_bloc.dart';
 
@@ -45,6 +46,15 @@ class _PuzzleBottomViewState extends State<PuzzleBottomView> {
           context.read<TimerBloc>().add(TimerStop());
           context.read<TimerBloc>().add(TimerStarted());
         },
+      ),
+      const SizedBox(width: 8),
+      GameButton(
+        "setting",
+        "Setting",
+        onTap: () {
+          Volume.show(context);
+        },
+        widthLarger: widthLarger,
       ),
     ];
 
