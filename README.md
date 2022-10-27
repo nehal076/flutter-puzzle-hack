@@ -25,31 +25,31 @@ The graphics are smooth, and the puzzles become increasingly difficult. This gam
 4. Fork the repo to your Github.<br/>
 
 5. Clone the Repo by going to your local Git Client in a particular local folder in your local machine by using this command with your forked repository link in place of below given link: <br/>
-  ```
-  git clone https://github.com/nehal076/flutter-puzzle-hack
-  ```
-- Create a branch using below command.
-  ```
-  git branch <your branch name>
-  ```
-- Checkout to your branch.
-  ```
-  git checkout <your branch name>
-  ```
-- Add your code in your local machine folder.
-  ```
-  git add .
-  ```
-- Commit your changes.
-  ```
-  git commit -m"<add your message here>"
-  ```
-- Push your changes.
-  ```
-  git push --set-upstream origin <your branch name>
-  ```
+    ``` sh
+     git clone https://github.com/nehal076/flutter-puzzle-hack
+    ```
+6. Create a branch using below command.
+    ``` sh
+     git branch <your branch name>
+    ```
+7. Checkout to your branch.
+    ``` sh
+     git checkout <your branch name>
+    ```
+8. Add your code in your local machine folder.
+   ``` sh
+     git add .
+   ```
+9. Commit your changes.
+     ``` sh
+     git commit -m"<add your message here>"
+     ```
+10. Push your changes.
+     ``` sh
+     git push --set-upstream origin <your branch name>
+     ```
 
-- Make a pull request! (compare your branch with the owner main branch)
+11. Make a pull request! (compare your branch with the owner main branch)
 
 # Contributors
 <br>
